@@ -39,11 +39,12 @@
     <!-- HEADER / NAVIGATION -->
     <header class="sticky top-0 z-50 bg-[#07090e]/90 backdrop-blur-xl border-b border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Logo -->
+            <!-- LOGO SECTION -->
             <a href="#" class="flex items-center gap-3 group">
-                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-brand-500 to-emerald-800 flex items-center justify-center shadow-lg shadow-brand-500/20 group-hover:scale-105 transition border border-brand-400/30">
-                    <i data-lucide="mountain-snow" class="w-6 h-6 text-white"></i>
-                </div>
+                <!-- ლოგოს სურათი: აქ ჩასვი შენი ლოგოს ფაილის სახელი, მაგალითად logo.png -->
+                <img src="logo.png" alt="Phenomenal Tours Logo" class="w-11 h-11 rounded-2xl object-cover shadow-lg border border-brand-400/30 group-hover:scale-105 transition" onerror="this.style.display='none'">
+                
+                <!-- სარეზერვო ტექსტური ლოგო თუ სურათი არ ჩაიტრთა -->
                 <div>
                     <span class="text-lg sm:text-xl font-extrabold tracking-tight text-white block">PHENOMENAL</span>
                     <span class="text-[10px] text-amber-400 font-semibold tracking-widest uppercase block -mt-1" x-text="t[lang].logoSub"></span>
@@ -53,9 +54,9 @@
             <!-- Desktop Nav -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
                 <a href="#tours" class="hover:text-brand-400 transition" x-text="t[lang].navTours"></a>
+                <a href="#instagram" class="hover:text-brand-400 transition" x-text="t[lang].navInsta"></a>
                 <a href="#inbound" class="hover:text-brand-400 transition" x-text="t[lang].navInbound"></a>
                 <a href="#faq" class="hover:text-brand-400 transition" x-text="t[lang].navFaq"></a>
-                <a href="#about" class="hover:text-brand-400 transition" x-text="t[lang].navAbout"></a>
             </nav>
 
             <!-- Actions -->
@@ -83,18 +84,22 @@
         <!-- Mobile Nav Drawer -->
         <div x-show="mobileMenu" x-transition class="md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-4 pb-6 space-y-3 shadow-2xl">
             <a href="#tours" @click="mobileMenu = false" class="block py-2 text-slate-300 hover:text-white font-medium" x-text="t[lang].navTours"></a>
+            <a href="#instagram" @click="mobileMenu = false" class="block py-2 text-slate-300 hover:text-white font-medium" x-text="t[lang].navInsta"></a>
             <a href="#inbound" @click="mobileMenu = false" class="block py-2 text-slate-300 hover:text-white font-medium" x-text="t[lang].navInbound"></a>
             <a href="#faq" @click="mobileMenu = false" class="block py-2 text-slate-300 hover:text-white font-medium" x-text="t[lang].navFaq"></a>
-            <a href="#about" @click="mobileMenu = false" class="block py-2 text-slate-300 hover:text-white font-medium" x-text="t[lang].navAbout"></a>
             <a href="#contact" @click="mobileMenu = false" class="block text-center bg-brand-600 text-white font-semibold py-3 rounded-xl mt-3 shadow-lg" x-text="t[lang].ctaBook"></a>
         </div>
     </header>
 
-    <!-- HERO SECTION: SVANETI TOWERS PREMIUM BACKGROUND WITH HOOK TITLE -->
+    <!-- HERO SECTION WITH VIDEO BACKGROUND -->
     <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden px-4">
+        <!-- 🎬 ვიდეო ფონი და მუქი ფენა ტექსტის განსათლებლად -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=2200&q=85" alt="Svaneti Towers Georgia" class="w-full h-full object-cover object-center filter brightness-[0.32] contrast-[1.1] scale-105">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/60 to-transparent"></div>
+            <video autoplay muted loop playsinline class="w-full h-full object-cover filter brightness-[0.4] contrast-[1.05]">
+                <!-- ქვემოთ მიუთითე შენი ვიდეოს ფაილის სახელი ან ლინკი -->
+                <source src="hero-video.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/50 to-transparent"></div>
         </div>
 
         <div class="relative z-10 max-w-4xl mx-auto text-center py-20">
@@ -102,7 +107,6 @@
                 <i data-lucide="crown" class="w-3.5 h-3.5"></i> <span x-text="t[lang].heroBadge"></span>
             </div>
             
-            <!-- THE HOOK TITLE -->
             <h1 class="text-3xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.12] mb-6" x-html="t[lang].heroTitle"></h1>
 
             <p class="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-light" x-text="t[lang].heroSubtitle"></p>
@@ -153,7 +157,6 @@
             </div>
         </div>
 
-        <!-- Tours Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <template x-for="tour in filteredTours" :key="tour.id">
                 <div class="bg-slate-900/80 border border-slate-800/90 rounded-3xl overflow-hidden group hover:border-brand-500/60 transition duration-500 flex flex-col justify-between shadow-2xl backdrop-blur-md">
@@ -173,14 +176,64 @@
                             <p class="text-slate-400 text-sm line-clamp-3 mb-6 leading-relaxed font-light" x-text="tour.description"></p>
                         </div>
                     </div>
-                    <div class="px-6 sm:px-8 pb-8 pt-0">
+                    <div class="px-6 sm:px-8 pb-8 pt-0 space-y-3">
                         <button @click="selectTour(tour.title)" class="w-full bg-slate-800/90 hover:bg-brand-600 text-slate-200 hover:text-white font-semibold py-3.5 rounded-2xl transition text-sm flex items-center justify-center gap-2 border border-slate-700/80 hover:border-transparent shadow-lg">
                             <span x-text="t[lang].cardBtn"></span>
                             <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </button>
+                        <a href="https://instagram.com" target="_blank" class="w-full bg-gradient-to-r from-purple-900/50 via-pink-900/50 to-amber-900/50 hover:opacity-90 text-slate-200 font-medium py-2.5 rounded-2xl transition text-xs flex items-center justify-center gap-2 border border-pink-500/30">
+                            <i data-lucide="instagram" class="w-4 h-4 text-pink-400"></i> <span x-text="t[lang].watchReels"></span>
+                        </a>
                     </div>
                 </div>
             </template>
+        </div>
+    </section>
+
+    <!-- INSTAGRAM VIBES SECTION -->
+    <section id="instagram" class="py-20 bg-gradient-to-b from-[#07090e] via-slate-900/50 to-[#07090e] border-y border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-500/10 border border-pink-500/30 text-pink-400 text-xs font-bold tracking-widest uppercase mb-4 backdrop-blur-md">
+                <i data-lucide="instagram" class="w-3.5 h-3.5"></i> Instagram Live Vibes
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-4" x-text="t[lang].instaTitle"></h2>
+            <p class="text-slate-400 text-sm max-w-xl mx-auto mb-12 font-light" x-text="t[lang].instaDesc"></p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <a href="https://instagram.com" target="_blank" class="group relative h-96 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl block">
+                    <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=85" alt="Svaneti Reel" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6 text-left">
+                        <span class="text-xs font-bold text-pink-400 uppercase tracking-widest block mb-1">@phenomenal.tours</span>
+                        <h4 class="text-white font-bold text-lg mb-2">სვანეთის დილები და კოშკების მაგია</h4>
+                        <span class="inline-flex items-center gap-1.5 text-xs text-slate-300 bg-white/10 px-3 py-1.5 rounded-xl backdrop-blur-md">
+                            <i data-lucide="play" class="w-3.5 h-3.5 text-pink-400"></i> ნახე ინსტაგრამზე
+                        </span>
+                    </div>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="group relative h-96 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl block">
+                    <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=800&q=85" alt="Tusheti Reel" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6 text-left">
+                        <span class="text-xs font-bold text-pink-400 uppercase tracking-widest block mb-1">@phenomenal.tours</span>
+                        <h4 class="text-white font-bold text-lg mb-2">თუშეთი: გზა ღრუბლებისკენ</h4>
+                        <span class="inline-flex items-center gap-1.5 text-xs text-slate-300 bg-white/10 px-3 py-1.5 rounded-xl backdrop-blur-md">
+                            <i data-lucide="play" class="w-3.5 h-3.5 text-pink-400"></i> ნახე ინსტაგრამზე
+                        </span>
+                    </div>
+                </a>
+                <a href="https://instagram.com" target="_blank" class="group relative h-96 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl block">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=85" alt="Kazbegi Reel" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6 text-left">
+                        <span class="text-xs font-bold text-pink-400 uppercase tracking-widest block mb-1">@phenomenal.tours</span>
+                        <h4 class="text-white font-bold text-lg mb-2">ყაზბეგი და დაუვიწყარი ემოციები</h4>
+                        <span class="inline-flex items-center gap-1.5 text-xs text-slate-300 bg-white/10 px-3 py-1.5 rounded-xl backdrop-blur-md">
+                            <i data-lucide="play" class="w-3.5 h-3.5 text-pink-400"></i> ნახე ინსტაგრამზე
+                        </span>
+                    </div>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -292,8 +345,8 @@
                 <h4 class="text-white font-semibold text-xs uppercase tracking-wider mb-3" x-text="t[lang].footerLinks"></h4>
                 <ul class="space-y-2 text-xs font-light">
                     <li><a href="#tours" class="hover:text-white transition" x-text="t[lang].navTours"></a></li>
+                    <li><a href="#instagram" class="hover:text-white transition" x-text="t[lang].navInsta"></a></li>
                     <li><a href="#inbound" class="hover:text-white transition" x-text="t[lang].navInbound"></a></li>
-                    <li><a href="#faq" class="hover:text-white transition" x-text="t[lang].navFaq"></a></li>
                     <li><a href="#contact" class="hover:text-white transition" x-text="t[lang].ctaBook"></a></li>
                 </ul>
             </div>
@@ -309,8 +362,8 @@
             <div>
                 <h4 class="text-white font-semibold text-xs uppercase tracking-wider mb-3" x-text="t[lang].footerSocial"></h4>
                 <div class="flex gap-3">
-                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-brand-400 hover:border-brand-500 transition shadow"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-brand-400 hover:border-brand-500 transition shadow"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="https://instagram.com" target="_blank" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-brand-400 hover:border-brand-500 transition shadow"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="https://facebook.com" target="_blank" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-brand-400 hover:border-brand-500 transition shadow"><i data-lucide="facebook" class="w-5 h-5"></i></a>
                 </div>
             </div>
         </div>
@@ -335,9 +388,9 @@
                         announcement: "✨ VIP სეზონი 2027: დაჯავშნე პრემიუმ კლასის ტური 15%-იანი პრივილეგიით!",
                         logoSub: "Luxury Tours Georgia",
                         navTours: "ტურები",
+                        navInsta: "Instagram 🎬",
                         navInbound: "Inbound / უცხოელებისთვის",
                         navFaq: "FAQ",
-                        navAbout: "ჩვენ შესახებ",
                         ctaBook: "VIP ჯავშანი",
                         heroBadge: "ლუქს კლასის სათავგადასავლო პლატფორმა",
                         heroTitle: "შენს ცხოვრებაში ყველაზე ძლიერი <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>ემოცია აქ იწყება</span>",
@@ -352,6 +405,9 @@
                         toursTitle: "აირჩიე შენი შემდეგი ემოცია",
                         filterAll: "ყველა",
                         cardBtn: "დეტალები და ჯავშანი",
+                        watchReels: "ნახე Instagram Reels 🎬",
+                        instaTitle: "ჩვენი ისტორიები შენს ეკრანზე",
+                        instaDesc: "ნახე რეალური მომენტები და ემოციები ჩვენი მოგზაურების ინსტაგრამიდან.",
                         inboundSub: "Global Inbound Luxury Agency",
                         inboundTitle: "მსოფლიო დონის VIP სერვისი საერთაშორისო სტუმრებისთვის",
                         inboundDesc: "ვემსახურებით მოგზაურებს მთელი მსოფლიოდან. პრემიუმ კლასის ლოჯისტიკა, მრავალენოვანი ექსკლუზიური გიდები და აბსოლუტური კომფორტი ყოველ ნაბიჯზე.",
@@ -386,9 +442,9 @@
                         announcement: "✨ VIP Season 2027: Book your luxury Caucasian tour with a 15% privilege!",
                         logoSub: "Luxury Tours Georgia",
                         navTours: "Tours",
+                        navInsta: "Instagram 🎬",
                         navInbound: "Inbound / Global",
                         navFaq: "FAQ",
-                        navAbout: "About Us",
                         ctaBook: "VIP Booking",
                         heroBadge: "Luxury Adventure Ecosystem",
                         heroTitle: "The most powerful emotion <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>of your life starts here</span>",
@@ -403,6 +459,9 @@
                         toursTitle: "Choose Your Next Emotion",
                         filterAll: "All",
                         cardBtn: "Details & Booking",
+                        watchReels: "Watch Instagram Reels 🎬",
+                        instaTitle: "Live Vibes from Our Travelers",
+                        instaDesc: "Watch real moments and emotions directly from our Instagram feed.",
                         inboundSub: "Global Inbound Luxury Agency",
                         inboundTitle: "World-Class VIP Service for International Guests",
                         inboundDesc: "Serving travelers worldwide. Premium logistics, multilingual exclusive guides, and absolute comfort at every step.",
@@ -437,9 +496,9 @@
                         announcement: "✨ VIP Сезон 2027: Забронируйте премиальный тур со скидкой 15%!",
                         logoSub: "Luxury Tours Georgia",
                         navTours: "Туры",
+                        navInsta: "Instagram 🎬",
                         navInbound: "Инбаунд / Иностранцам",
                         navFaq: "FAQ",
-                        navAbout: "О нас",
                         ctaBook: "VIP Бронь",
                         heroBadge: "Премиальная экосистема путешествий",
                         heroTitle: "Самая сильная эмоция <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>вашей жизни начинается здесь</span>",
