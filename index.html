@@ -3,49 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ფენომენალური ტურები | Phenomenal Tours - Georgia & Caucasus</title>
+    <title>ფენომენალური ტურები | Phenomenal Tours - Luxury Caucasus Expeditions</title>
     <!-- SEO Meta Tags -->
-    <meta name="description" content="აღმოაჩინე საქართველო ფენომენალურად. დაუვიწყარი ემოციები, უსაფრთხო ტურები სვანეთში, თუშეთსა და ყაზბეგში.">
+    <meta name="description" content="აღმოაჩინე საქართველო პრემიუმ დონეზე. ექსკლუზიური ემოციები და ლუქს კლასის ტურები სვანეთში, თუშეთსა და ყაზბეგში.">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Alpine.js for Interactivity & Localization -->
+    <!-- Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Plus Jakarta Sans / Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
                     colors: {
-                        brand: { 50: '#f0fdf4', 500: '#10b981', 600: '#059669', 700: '#047857', dark: '#0f172a' }
+                        brand: { 50: '#f0fdf4', 500: '#10b981', 600: '#059669', 700: '#047857', dark: '#090d16' },
+                        gold: { 400: '#fbbf24', 500: '#f59e0b', 600: '#d97706' }
                     }
                 }
             }
         }
     </script>
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white" x-data="phenomenalApp()">
+<body class="bg-[#07090e] text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white" x-data="phenomenalApp()">
 
     <!-- TOP ANNOUNCEMENT BAR -->
-    <div class="bg-brand-700 text-white text-xs sm:text-sm py-2 px-4 text-center font-medium tracking-wide flex justify-center items-center gap-2">
+    <div class="bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-900 text-amber-300 text-xs sm:text-sm py-2.5 px-4 text-center font-medium tracking-wide flex justify-center items-center gap-2 border-b border-emerald-700/50">
         <span x-text="t[lang].announcement"></span>
-        <span class="hidden md:inline bg-white/20 px-2 py-0.5 rounded text-xs uppercase font-bold">2027</span>
+        <span class="hidden md:inline bg-amber-400/20 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded text-[10px] uppercase font-bold">VIP 2027</span>
     </div>
 
     <!-- HEADER / NAVIGATION -->
-    <header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
+    <header class="sticky top-0 z-50 bg-[#07090e]/90 backdrop-blur-xl border-b border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <!-- Logo -->
             <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-emerald-700 flex items-center justify-center shadow-lg shadow-brand-500/20 group-hover:scale-105 transition">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-brand-500 to-emerald-800 flex items-center justify-center shadow-lg shadow-brand-500/20 group-hover:scale-105 transition border border-brand-400/30">
                     <i data-lucide="mountain-snow" class="w-6 h-6 text-white"></i>
                 </div>
                 <div>
-                    <span class="text-lg sm:text-xl font-bold tracking-tight text-white block">PHENOMENAL</span>
-                    <span class="text-[10px] text-brand-400 font-medium tracking-widest uppercase block -mt-1" x-text="t[lang].logoSub"></span>
+                    <span class="text-lg sm:text-xl font-extrabold tracking-tight text-white block">PHENOMENAL</span>
+                    <span class="text-[10px] text-amber-400 font-semibold tracking-widest uppercase block -mt-1" x-text="t[lang].logoSub"></span>
                 </div>
             </a>
 
@@ -57,25 +58,22 @@
                 <a href="#about" class="hover:text-brand-400 transition" x-text="t[lang].navAbout"></a>
             </nav>
 
-            <!-- Actions: Language & Currency & CTA -->
+            <!-- Actions -->
             <div class="flex items-center gap-3">
-                <!-- Language Switcher -->
-                <select x-model="lang" class="bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg px-2 py-1.5 focus:outline-none focus:border-brand-500 cursor-pointer font-semibold">
+                <select x-model="lang" class="bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-xl px-2.5 py-2 focus:outline-none focus:border-brand-500 cursor-pointer font-semibold shadow-inner">
                     <option value="ka">🇬🇪 ქარ</option>
                     <option value="en">🇬🇧 ENG</option>
                     <option value="ru">🇷🇺 РУС</option>
                 </select>
 
-                <!-- Currency Selector -->
-                <select x-model="currency" class="bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg px-2 py-1.5 focus:outline-none focus:border-brand-500 cursor-pointer">
+                <select x-model="currency" class="bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-xl px-2.5 py-2 focus:outline-none focus:border-brand-500 cursor-pointer shadow-inner">
                     <option value="GEL">₾ GEL</option>
                     <option value="USD">$ USD</option>
                     <option value="EUR">€ EUR</option>
                 </select>
 
-                <a href="#contact" class="hidden sm:inline-flex items-center justify-center bg-brand-600 hover:bg-brand-500 text-white font-medium text-sm px-4 py-2.5 rounded-xl shadow-lg shadow-brand-600/20 transition" x-text="t[lang].ctaBook"></a>
+                <a href="#contact" class="hidden sm:inline-flex items-center justify-center bg-gradient-to-r from-brand-600 to-emerald-600 hover:from-brand-500 hover:to-emerald-500 text-white font-semibold text-sm px-5 py-2.5 rounded-xl shadow-xl shadow-brand-600/20 transition" x-text="t[lang].ctaBook"></a>
 
-                <!-- Mobile Menu Button -->
                 <button @click="mobileMenu = !mobileMenu" class="md:hidden p-2 text-slate-400 hover:text-white">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
@@ -83,99 +81,100 @@
         </div>
 
         <!-- Mobile Nav Drawer -->
-        <div x-show="mobileMenu" x-transition class="md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-3 pb-6 space-y-3 shadow-2xl">
+        <div x-show="mobileMenu" x-transition class="md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-4 pb-6 space-y-3 shadow-2xl">
             <a href="#tours" @click="mobileMenu = false" class="block py-2 text-slate-300 hover:text-white font-medium" x-text="t[lang].navTours"></a>
             <a href="#inbound" @click="mobileMenu = false" class="block py-2 text-slate-300 hover:text-white font-medium" x-text="t[lang].navInbound"></a>
             <a href="#faq" @click="mobileMenu = false" class="block py-2 text-slate-300 hover:text-white font-medium" x-text="t[lang].navFaq"></a>
             <a href="#about" @click="mobileMenu = false" class="block py-2 text-slate-300 hover:text-white font-medium" x-text="t[lang].navAbout"></a>
-            <a href="#contact" @click="mobileMenu = false" class="block text-center bg-brand-600 text-white font-medium py-3 rounded-xl mt-3" x-text="t[lang].ctaBook"></a>
+            <a href="#contact" @click="mobileMenu = false" class="block text-center bg-brand-600 text-white font-semibold py-3 rounded-xl mt-3 shadow-lg" x-text="t[lang].ctaBook"></a>
         </div>
     </header>
 
-    <!-- HERO SECTION (Neuro-Marketing Emotional Hook) -->
-    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden px-4">
+    <!-- HERO SECTION: SVANETI TOWERS PREMIUM BACKGROUND -->
+    <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden px-4">
+        <!-- Real High-End Svaneti Towers Background Image -->
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=2000&q=80" alt="Georgia Mountains Svaneti" class="w-full h-full object-cover filter brightness-[0.35] scale-105">
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent"></div>
+            <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=2200&q=85" alt="Svaneti Towers Georgia Luxury" class="w-full h-full object-cover object-center filter brightness-[0.32] contrast-[1.1] scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/60 to-transparent"></div>
         </div>
 
-        <div class="relative z-10 max-w-4xl mx-auto text-center py-16">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-semibold tracking-wider uppercase mb-6 backdrop-blur-md">
-                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> <span x-text="t[lang].heroBadge"></span>
+        <div class="relative z-10 max-w-4xl mx-auto text-center py-20">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/10 border border-amber-400/30 text-amber-400 text-xs font-bold tracking-widest uppercase mb-6 backdrop-blur-md shadow-lg">
+                <i data-lucide="crown" class="w-3.5 h-3.5"></i> <span x-text="t[lang].heroBadge"></span>
             </div>
             
-            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-6" x-html="t[lang].heroTitle"></h1>
+            <h1 class="text-3xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.12] mb-6" x-html="t[lang].heroTitle"></h1>
 
             <p class="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-light" x-text="t[lang].heroSubtitle"></p>
 
-            <!-- Quick Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <a href="#tours" class="w-full sm:w-auto bg-brand-600 hover:bg-brand-500 text-white font-semibold px-8 py-4 rounded-xl transition shadow-xl shadow-brand-600/30 flex items-center justify-center gap-2">
+                <a href="#tours" class="w-full sm:w-auto bg-gradient-to-r from-brand-600 to-emerald-600 hover:from-brand-500 hover:to-emerald-500 text-white font-bold px-8 py-4 rounded-2xl transition shadow-2xl shadow-brand-600/40 flex items-center justify-center gap-2 border border-brand-400/30">
                     <span x-text="t[lang].heroBtnExplore"></span> <i data-lucide="arrow-right" class="w-5 h-5"></i>
                 </a>
-                <a href="#contact" class="w-full sm:w-auto bg-slate-900/80 hover:bg-slate-800 text-slate-200 font-semibold px-8 py-4 rounded-xl transition border border-slate-700 backdrop-blur-md text-center" x-text="t[lang].heroBtnCustom"></a>
+                <a href="#contact" class="w-full sm:w-auto bg-slate-900/90 hover:bg-slate-800 text-slate-200 font-semibold px-8 py-4 rounded-2xl transition border border-slate-700/80 backdrop-blur-md text-center shadow-xl" x-text="t[lang].heroBtnCustom"></a>
             </div>
         </div>
     </section>
 
     <!-- TRUST METRICS -->
-    <section class="border-y border-slate-800 bg-slate-900/40 py-8">
+    <section class="border-y border-slate-800/80 bg-slate-900/30 py-8 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div>
-                <div class="text-2xl sm:text-3xl font-extrabold text-brand-400 mb-1">15,000+</div>
+                <div class="text-2xl sm:text-4xl font-extrabold text-amber-400 mb-1">15,000+</div>
                 <div class="text-xs sm:text-sm text-slate-400" x-text="t[lang].stat1"></div>
             </div>
             <div>
-                <div class="text-2xl sm:text-3xl font-extrabold text-brand-400 mb-1">120+</div>
+                <div class="text-2xl sm:text-4xl font-extrabold text-amber-400 mb-1">120+</div>
                 <div class="text-xs sm:text-sm text-slate-400" x-text="t[lang].stat2"></div>
             </div>
             <div>
-                <div class="text-2xl sm:text-3xl font-extrabold text-brand-400 mb-1">4.9 / 5.0</div>
+                <div class="text-2xl sm:text-4xl font-extrabold text-amber-400 mb-1">4.9 / 5.0</div>
                 <div class="text-xs sm:text-sm text-slate-400" x-text="t[lang].stat3"></div>
             </div>
             <div>
-                <div class="text-2xl sm:text-3xl font-extrabold text-brand-400 mb-1">100%</div>
+                <div class="text-2xl sm:text-4xl font-extrabold text-amber-400 mb-1">100%</div>
                 <div class="text-xs sm:text-sm text-slate-400" x-text="t[lang].stat4"></div>
             </div>
         </div>
     </section>
 
-    <!-- TOURS CATALOG SECTION -->
-    <section id="tours" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- TOURS CATALOG SECTION (Real Legendary Location Photos) -->
+    <section id="tours" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
             <div>
-                <span class="text-brand-400 text-sm font-semibold tracking-wider uppercase" x-text="t[lang].toursSub"></span>
-                <h2 class="text-2xl sm:text-4xl font-bold text-white tracking-tight mt-2" x-text="t[lang].toursTitle"></h2>
+                <span class="text-amber-400 text-xs font-bold tracking-widest uppercase" x-text="t[lang].toursSub"></span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mt-2" x-text="t[lang].toursTitle"></h2>
             </div>
             <div class="mt-4 md:mt-0 flex gap-2 overflow-x-auto pb-2">
-                <button @click="filterCategory = 'all'" :class="filterCategory === 'all' ? 'bg-brand-600 text-white' : 'bg-slate-900 text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-semibold transition border border-slate-800 whitespace-nowrap" x-text="t[lang].filterAll"></button>
-                <button @click="filterCategory = 'svaneti'" :class="filterCategory === 'svaneti' ? 'bg-brand-600 text-white' : 'bg-slate-900 text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-semibold transition border border-slate-800 whitespace-nowrap">სვანეთი</button>
-                <button @click="filterCategory = 'tusheti'" :class="filterCategory === 'tusheti' ? 'bg-brand-600 text-white' : 'bg-slate-900 text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-semibold transition border border-slate-800 whitespace-nowrap">თუშეთი</button>
-                <button @click="filterCategory = 'kazbegi'" :class="filterCategory === 'kazbegi' ? 'bg-brand-600 text-white' : 'bg-slate-900 text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-semibold transition border border-slate-800 whitespace-nowrap">ყაზბეგი</button>
+                <button @click="filterCategory = 'all'" :class="filterCategory === 'all' ? 'bg-brand-600 text-white border-brand-500' : 'bg-slate-900 text-slate-400 hover:text-white border-slate-800'" class="px-5 py-2.5 rounded-xl text-xs font-semibold transition border whitespace-nowrap shadow" x-text="t[lang].filterAll"></button>
+                <button @click="filterCategory = 'svaneti'" :class="filterCategory === 'svaneti' ? 'bg-brand-600 text-white border-brand-500' : 'bg-slate-900 text-slate-400 hover:text-white border-slate-800'" class="px-5 py-2.5 rounded-xl text-xs font-semibold transition border whitespace-nowrap shadow">სვანეთი</button>
+                <button @click="filterCategory = 'tusheti'" :class="filterCategory === 'tusheti' ? 'bg-brand-600 text-white border-brand-500' : 'bg-slate-900 text-slate-400 hover:text-white border-slate-800'" class="px-5 py-2.5 rounded-xl text-xs font-semibold transition border whitespace-nowrap shadow">თუშეთი</button>
+                <button @click="filterCategory = 'kazbegi'" :class="filterCategory === 'kazbegi' ? 'bg-brand-600 text-white border-brand-500' : 'bg-slate-900 text-slate-400 hover:text-white border-slate-800'" class="px-5 py-2.5 rounded-xl text-xs font-semibold transition border whitespace-nowrap shadow">ყაზბეგი</button>
             </div>
         </div>
 
         <!-- Tours Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <template x-for="tour in filteredTours" :key="tour.id">
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden group hover:border-brand-500/50 transition duration-300 flex flex-col justify-between shadow-xl">
+                <div class="bg-slate-900/80 border border-slate-800/90 rounded-3xl overflow-hidden group hover:border-brand-500/60 transition duration-500 flex flex-col justify-between shadow-2xl backdrop-blur-md">
                     <div>
-                        <div class="relative h-60 overflow-hidden">
-                            <img :src="tour.image" :alt="tour.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                            <div class="absolute top-4 left-4 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-semibold text-brand-400 border border-slate-800" x-text="tour.badge"></div>
-                            <div class="absolute bottom-4 right-4 bg-brand-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md" x-text="formatPrice(tour.priceGEL)"></div>
+                        <div class="relative h-64 overflow-hidden">
+                            <img :src="tour.image" :alt="tour.title" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+                            <div class="absolute top-4 left-4 bg-slate-950/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl text-xs font-bold text-amber-400 border border-slate-800 shadow-xl" x-text="tour.badge"></div>
+                            <div class="absolute bottom-4 right-4 bg-brand-600 text-white text-xs font-extrabold px-3.5 py-2 rounded-xl shadow-xl" x-text="formatPrice(tour.priceGEL)"></div>
                         </div>
-                        <div class="p-6">
-                            <div class="flex items-center gap-4 text-xs text-slate-400 mb-3">
-                                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-brand-400"></i> <span x-text="tour.duration"></span></span>
-                                <span class="flex items-center gap-1"><i data-lucide="users" class="w-3.5 h-3.5 text-brand-400"></i> <span x-text="tour.spots"></span></span>
+                        <div class="p-6 sm:p-8">
+                            <div class="flex items-center gap-4 text-xs text-slate-400 mb-3 font-medium">
+                                <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-4 h-4 text-brand-400"></i> <span x-text="tour.duration"></span></span>
+                                <span class="flex items-center gap-1.5"><i data-lucide="users" class="w-4 h-4 text-brand-400"></i> <span x-text="tour.spots"></span></span>
                             </div>
-                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-brand-400 transition" x-text="tour.title"></h3>
-                            <p class="text-slate-400 text-sm line-clamp-3 mb-4 leading-relaxed" x-text="tour.description"></p>
+                            <h3 class="text-xl font-bold text-white mb-3 group-hover:text-brand-400 transition" x-text="tour.title"></h3>
+                            <p class="text-slate-400 text-sm line-clamp-3 mb-6 leading-relaxed font-light" x-text="tour.description"></p>
                         </div>
                     </div>
-                    <div class="px-6 pb-6 pt-0">
-                        <button @click="selectTour(tour.title)" class="w-full bg-slate-800 hover:bg-brand-600 text-slate-200 hover:text-white font-medium py-3 rounded-xl transition text-sm flex items-center justify-center gap-2 border border-slate-700 hover:border-transparent">
+                    <div class="px-6 sm:px-8 pb-8 pt-0">
+                        <button @click="selectTour(tour.title)" class="w-full bg-slate-800/90 hover:bg-brand-600 text-slate-200 hover:text-white font-semibold py-3.5 rounded-2xl transition text-sm flex items-center justify-center gap-2 border border-slate-700/80 hover:border-transparent shadow-lg">
                             <span x-text="t[lang].cardBtn"></span>
                             <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </button>
@@ -185,45 +184,46 @@
         </div>
     </section>
 
-    <!-- INBOUND & INTERNATIONAL HUB -->
-    <section id="inbound" class="bg-slate-900/60 border-y border-slate-800 py-20">
+    <!-- INBOUND & INTERNATIONAL LUXURY HUB -->
+    <section id="inbound" class="bg-slate-900/40 border-y border-slate-800/80 py-24 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-                <span class="text-brand-400 text-sm font-semibold tracking-wider uppercase" x-text="t[lang].inboundSub"></span>
-                <h2 class="text-2xl sm:text-4xl font-bold text-white tracking-tight mt-2 mb-6" x-text="t[lang].inboundTitle"></h2>
-                <p class="text-slate-300 mb-6 leading-relaxed" x-text="t[lang].inboundDesc"></p>
-                <ul class="space-y-3 mb-8 text-slate-300 text-sm">
+                <span class="text-amber-400 text-xs font-bold tracking-widest uppercase" x-text="t[lang].inboundSub"></span>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight mt-2 mb-6" x-text="t[lang].inboundTitle"></h2>
+                <p class="text-slate-300 mb-6 leading-relaxed font-light" x-text="t[lang].inboundDesc"></p>
+                <ul class="space-y-3.5 mb-8 text-slate-300 text-sm">
                     <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-400 shrink-0"></i> <span x-text="t[lang].inboundLi1"></span></li>
                     <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-400 shrink-0"></i> <span x-text="t[lang].inboundLi2"></span></li>
                     <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-400 shrink-0"></i> <span x-text="t[lang].inboundLi3"></span></li>
                 </ul>
-                <a href="#contact" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-500 text-white font-medium px-6 py-3 rounded-xl transition shadow-lg shadow-brand-600/20">
+                <a href="#contact" class="inline-flex items-center gap-2 bg-gradient-to-r from-brand-600 to-emerald-600 hover:from-brand-500 hover:to-emerald-500 text-white font-semibold px-7 py-3.5 rounded-2xl transition shadow-xl shadow-brand-600/20">
                     <span x-text="t[lang].inboundBtn"></span> <i data-lucide="arrow-right" class="w-4 h-4"></i>
                 </a>
             </div>
             <div class="relative">
-                <div class="rounded-3xl overflow-hidden border border-slate-800 shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1000&q=80" alt="Caucasus Hiking Inbound" class="w-full h-[350px] sm:h-[400px] object-cover">
+                <div class="rounded-3xl overflow-hidden border border-slate-800 shadow-2xl relative group">
+                    <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1200&q=85" alt="Caucasus Luxury Hiking Inbound" class="w-full h-[380px] sm:h-[420px] object-cover group-hover:scale-105 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FAQ SECTION (ხშირად დასმული კითხვები) -->
-    <section id="faq" class="py-20 max-w-4xl mx-auto px-4">
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-24 max-w-4xl mx-auto px-4">
         <div class="text-center mb-12">
-            <span class="text-brand-400 text-sm font-semibold tracking-wider uppercase" x-text="t[lang].faqSub"></span>
-            <h2 class="text-2xl sm:text-4xl font-bold text-white mt-2" x-text="t[lang].faqTitle"></h2>
+            <span class="text-amber-400 text-xs font-bold tracking-widest uppercase" x-text="t[lang].faqSub"></span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-white mt-2" x-text="t[lang].faqTitle"></h2>
         </div>
 
         <div class="space-y-4" x-data="{ activeFaq: null }">
             <template x-for="(faq, index) in t[lang].faqs" :key="index">
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden transition">
-                    <button @click="activeFaq = activeFaq === index ? null : index" class="w-full px-6 py-4 text-left flex justify-between items-center gap-4 focus:outline-none">
+                <div class="bg-slate-900/80 border border-slate-800 rounded-2xl overflow-hidden transition backdrop-blur-md shadow-xl">
+                    <button @click="activeFaq = activeFaq === index ? null : index" class="w-full px-6 py-5 text-left flex justify-between items-center gap-4 focus:outline-none">
                         <span class="font-semibold text-white text-sm sm:text-base" x-text="faq.q"></span>
                         <i data-lucide="chevron-down" class="w-5 h-5 text-brand-400 shrink-0 transition duration-300" :class="activeFaq === index ? 'rotate-180' : ''"></i>
                     </button>
-                    <div x-show="activeFaq === index" x-transition class="px-6 pb-4 text-slate-400 text-sm leading-relaxed border-t border-slate-800/60 pt-3" x-text="faq.a"></div>
+                    <div x-show="activeFaq === index" x-transition class="px-6 pb-5 text-slate-400 text-sm leading-relaxed border-t border-slate-800/60 pt-3 font-light" x-text="faq.a"></div>
                 </div>
             </template>
         </div>
@@ -231,67 +231,66 @@
 
     <!-- CONTACT / BOOKING FORM -->
     <section id="contact" class="py-20 max-w-4xl mx-auto px-4">
-        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-12 shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-brand-500/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="bg-gradient-to-br from-slate-900 via-slate-900/90 to-[#090d16] border border-slate-800 rounded-3xl p-6 sm:p-12 shadow-2xl relative overflow-hidden backdrop-blur-xl">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
             <div class="text-center max-w-xl mx-auto mb-10">
-                <span class="text-brand-400 text-sm font-semibold tracking-wider uppercase" x-text="t[lang].contactSub"></span>
-                <h2 class="text-2xl sm:text-3xl font-bold text-white mt-2 mb-3" x-text="t[lang].contactTitle"></h2>
-                <p class="text-slate-400 text-sm" x-text="t[lang].contactDesc"></p>
+                <span class="text-amber-400 text-xs font-bold tracking-widest uppercase" x-text="t[lang].contactSub"></span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-2 mb-3" x-text="t[lang].contactTitle"></h2>
+                <p class="text-slate-400 text-sm font-light" x-text="t[lang].contactDesc"></p>
             </div>
 
             <form @submit.prevent="submitForm" class="space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 uppercase mb-1" x-text="t[lang].labelName"></label>
-                        <input type="text" x-model="form.name" required placeholder="გიორგი ნადირაძე" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1" x-text="t[lang].labelName"></label>
+                        <input type="text" x-model="form.name" required placeholder="გიორგი ნადირაძე" class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-brand-500 shadow-inner">
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 uppercase mb-1" x-text="t[lang].labelPhone"></label>
-                        <input type="tel" x-model="form.phone" required placeholder="+995 558 XX XX XX" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1" x-text="t[lang].labelPhone"></label>
+                        <input type="tel" x-model="form.phone" required placeholder="+995 558 XX XX XX" class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-brand-500 shadow-inner">
                     </div>
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 uppercase mb-1" x-text="t[lang].labelTour"></label>
-                        <select x-model="form.tour" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 cursor-pointer">
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1" x-text="t[lang].labelTour"></label>
+                        <select x-model="form.tour" class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-brand-500 cursor-pointer shadow-inner">
                             <option value="Svaneti Trekking">სვანეთის 4-დღიანი ემოციური ტური</option>
                             <option value="Tusheti Adventure">თუშეთი: თავისუფლება ღრუბლებს ზემოთ</option>
                             <option value="Kazbegi & Juta">ყაზბეგი და ჯუთა (1 დღიანი განტვირთვა)</option>
-                            <option value="Custom Inbound Tour">ინდივიდუალური / კორპორატიული ტური</option>
+                            <option value="Custom Inbound Tour">ინდივიდუალური / კორპორატიული VIP ტური</option>
                         </select>
                     </div>
                     <div>
-                        <label class="block text-xs font-medium text-slate-400 uppercase mb-1" x-text="t[lang].labelPeople"></label>
-                        <input type="number" x-model="form.people" min="1" max="50" value="2" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
+                        <label class="block text-xs font-semibold text-slate-400 uppercase mb-1" x-text="t[lang].labelPeople"></label>
+                        <input type="number" x-model="form.people" min="1" max="50" value="2" class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-brand-500 shadow-inner">
                     </div>
                 </div>
                 <div>
-                    <button type="submit" class="w-full bg-brand-600 hover:bg-brand-500 text-white font-semibold py-4 rounded-xl transition shadow-lg shadow-brand-600/30 text-center text-sm sm:text-base" x-text="t[lang].submitBtn"></button>
+                    <button type="submit" class="w-full bg-gradient-to-r from-brand-600 to-emerald-600 hover:from-brand-500 hover:to-emerald-500 text-white font-bold py-4 rounded-2xl transition shadow-xl shadow-brand-600/30 text-center text-sm sm:text-base border border-brand-400/20" x-text="t[lang].submitBtn"></button>
                 </div>
-                <p class="text-center text-xs text-slate-500 mt-2" x-text="t[lang].secureNotice"></p>
+                <p class="text-center text-xs text-slate-500 mt-2 font-light" x-text="t[lang].secureNotice"></p>
             </form>
 
-            <!-- Success Alert -->
             <div x-show="submitted" x-transition class="mt-6 p-4 bg-emerald-950/80 border border-emerald-500/50 rounded-2xl text-center text-emerald-300 text-sm font-medium" x-text="t[lang].successMsg"></div>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="border-t border-slate-800 bg-slate-950 py-12 text-slate-400 text-sm">
+    <footer class="border-t border-slate-800/80 bg-[#05070b] py-12 text-slate-400 text-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
                 <div class="flex items-center gap-3 mb-4">
-                    <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white">
+                    <div class="w-9 h-9 rounded-xl bg-brand-600 flex items-center justify-center text-white shadow-lg">
                         <i data-lucide="mountain-snow" class="w-5 h-5"></i>
                     </div>
-                    <span class="text-lg font-bold text-white">PHENOMENAL TOURS</span>
+                    <span class="text-base font-extrabold text-white tracking-tight">PHENOMENAL TOURS</span>
                 </div>
-                <p class="text-xs text-slate-400 leading-relaxed" x-text="t[lang].footerDesc"></p>
+                <p class="text-xs text-slate-400 leading-relaxed font-light" x-text="t[lang].footerDesc"></p>
             </div>
             <div>
                 <h4 class="text-white font-semibold text-xs uppercase tracking-wider mb-3" x-text="t[lang].footerLinks"></h4>
-                <ul class="space-y-2 text-xs">
+                <ul class="space-y-2 text-xs font-light">
                     <li><a href="#tours" class="hover:text-white transition" x-text="t[lang].navTours"></a></li>
                     <li><a href="#inbound" class="hover:text-white transition" x-text="t[lang].navInbound"></a></li>
                     <li><a href="#faq" class="hover:text-white transition" x-text="t[lang].navFaq"></a></li>
@@ -300,7 +299,7 @@
             </div>
             <div>
                 <h4 class="text-white font-semibold text-xs uppercase tracking-wider mb-3" x-text="t[lang].footerContact"></h4>
-                <ul class="space-y-2 text-xs">
+                <ul class="space-y-2 text-xs font-light">
                     <li>📞 +995 558 65 60 85</li>
                     <li>📞 +995 555 248 768</li>
                     <li>✉️ phenomenaltravel@yahoo.com</li>
@@ -310,17 +309,17 @@
             <div>
                 <h4 class="text-white font-semibold text-xs uppercase tracking-wider mb-3" x-text="t[lang].footerSocial"></h4>
                 <div class="flex gap-3">
-                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-brand-400 hover:border-brand-500 transition"><i data-lucide="facebook" class="w-5 h-5"></i></a>
-                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-brand-400 hover:border-brand-500 transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-brand-400 hover:border-brand-500 transition shadow"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-brand-400 hover:border-brand-500 transition shadow"><i data-lucide="instagram" class="w-5 h-5"></i></a>
                 </div>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-900 pt-6 text-center text-xs text-slate-600">
-            © 2027 Phenomenal Tours. ყველა უფლება დაცულია.
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-900 pt-6 text-center text-xs text-slate-600 font-light">
+            © 2027 Phenomenal Tours. ყველა უფლება დაცულია. Luxury Travel Ecosystem.
         </div>
     </footer>
 
-    <!-- LOGIC & LOCALIZATION DATA -->
+    <!-- ALPINE.JS LOGIC & REAL LEGENDARY PHOTOS -->
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('phenomenalApp', () => ({
@@ -333,196 +332,197 @@
                 
                 t: {
                     ka: {
-                        announcement: "🚀 ახალი სეზონი 2027: დაჯავშნე შენი ემოციური თავგადასავალი 15%-იანი ფასდაკლებით!",
-                        logoSub: "ფენომენალური ტურები",
+                        announcement: "✨ VIP სეზონი 2027: დაჯავშნე პრემიუმ კლასის ექსპედიცია 15%-იანი προრივილეგიით!",
+                        logoSub: "Luxury Tours Georgia",
                         navTours: "ტურები",
                         navInbound: "Inbound / უცხოელებისთვის",
                         navFaq: "FAQ",
                         navAbout: "ჩვენ შესახებ",
-                        ctaBook: "დაჯავშნა",
-                        heroBadge: "იგრძენი სიცოცხლის გემო",
-                        heroTitle: "ადამიანები ყიდულობენ <span class='text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-emerald-300'>დაუვიწყარ ემოციებს</span>",
-                        heroSubtitle: "გაექეცი ყოველდღიურ რუტინას. ჩაიძირე კავკასიონის მაგიაში, იგრძენი თავისუფლება და შექმენი მოგონებები, რომლებიც მთელი ცხოვრება გაგყვება.",
+                        ctaBook: "VIP ჯავშანი",
+                        heroBadge: "ლუქს კლასის სათავგადასავლო პლატფორმა",
+                        heroTitle: "ადამიანები ყიდულობენ <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>დაუვიწყარ ემოციებს</span>",
+                        heroSubtitle: "გაექეცი ყოველდღიურ რუტინას. ჩაიძირე კავკასიონის დიდებულებაში, იგრძენი აბსოლუტური თავისუფლება და შექმენი მოგონებები, რომლებიც მთელი ცხოვრება გაგყვება.",
                         heroBtnExplore: "აღმოაჩინე ტურები",
-                        heroBtnCustom: "ინდივიდუალური მოთხოვნა",
+                        heroBtnCustom: "ინდივიდუალური VIP მოთხოვნა",
                         stat1: "კმაყოფილი მოგზაური",
                         stat2: "უნიკალური მარშრუტი",
                         stat3: "Google & Facebook რეიტინგი",
                         stat4: "უსაფრთხოების გარანტია",
-                        toursSub: "გამორჩეული შეთავაზებები",
+                        toursSub: "პრემიუმ კოლექცია",
                         toursTitle: "აირჩიე შენი შემდეგი ემოცია",
                         filterAll: "ყველა",
                         cardBtn: "დეტალები და ჯავშანი",
-                        inboundSub: "Global Inbound Agency",
-                        inboundTitle: "მსოფლიო დონის სერვისი უცხოელი სტუმრებისთვის",
-                        inboundDesc: "ვემსახურებით მოგზაურებს მთელი მსოფლიოდან. სრული ლოჯისტიკა, მრავალენოვანი გიდები და აბსოლუტური კომფორტი ყოველ ნაბიჯზე.",
-                        inboundLi1: "24/7 პერსონალური კონსიერჟი და მხარდაჭერა",
+                        inboundSub: "Global Inbound Luxury Agency",
+                        inboundTitle: "მსოფლიო დონის VIP სერვისი საერთაშორისო სტუმრებისთვის",
+                        inboundDesc: "ვემსახურებით მოგზაურებს მთელი მსოფლიოდან. პრემიუმ კლასის ლოჯისტიკა, მრავალენოვანი ექსკლუზიური გიდები და აბსოლუტური კომფორტი ყოველ ნაბიჯზე.",
+                        inboundLi1: "24/7 პერსონალური კონსიერჟი და VIP მხარდაჭერა",
                         inboundLi2: "მრავალვალუტიანი უსაფრთხო გადახდები (Stripe, PayPal)",
-                        inboundLi3: "კომფორტული სპეც-ტრანსპორტი (4x4 SUVs & Sprinter)",
-                        inboundBtn: "მოითხოვე ინდივიდუალური ტური",
+                        inboundLi3: "კომფორტული სპეც-ტრანსპორტი (Luxury 4x4 SUVs & VIP Sprinter)",
+                        inboundBtn: "მოითხოვე პერსონალური ტური",
                         faqSub: "ხშირად დასმული კითხვები",
-                        faqTitle: "ყველაფერი შენი სიმშვიდისთვის",
+                        faqTitle: "ყველაფერი შენი სრული სიმშვიდისთვის",
                         faqs: [
-                            { q: "როგორ ხდება ტურის დაჯავშნა და თანხის გადახდა?", a: "შეგიძლიათ შეავსოთ საიტზე არსებული ფორმა ან დაგვიკავშირდეთ ნომერზე. ჯავშნის დასადასტურებლად საჭიროა მცირე ავანსი, ხოლო დარჩენილი თანხა იფარება ტურის დღეს." },
-                            { q: "რა შედის ტურის ღირებულებაში?", a: "ტურის ფასში სრულად შედის მგზავრობა კომფორტული ტრანსპორტით, პროფესიონალური გიდის მომსახურება, ფოტო-ვიდეო გადაღება და ზოგიერთ ტურში — ღამისთევა საოჯახო სასტუმროებში." },
-                            { q: "შესაძლებელია თუ არა ინდივიდუალური ან კორპორატიული ტურის აწყობა?", a: "დიახ! ჩვენ ვამზადებთ ბესპოკ (Bespoke) და კორპორატიულ ტურებს ზუსტად თქვენი გუნდის სურვილებისა და ბიუჯეტის მიხედვით." },
-                            { q: "რა ხდება უამინდობის შემთხვევაში?", a: "უსაფრთხოება ჩვენი უპირველესი პრიორიტეტია. ამინდის მკვეთრი გაუარესებისას მარშრუტი იცვლება უსაფრთხო ალტერნატივით ან ხდება თარიღის გადატანა თქვენივე კომფორტისთვის." }
+                            { q: "როგორ ხდება ტურის დაჯავშნა და თანხის გადახდა?", a: "შეგიძლიათ შეავსოთ საიტზე არსებული ფორმა ან დაგვიკავშირდეთ. ჯავშნის დასადასტურებლად საჭიროა მცირე ავანსი, ხოლო დარჩენილი თანხა იფარება ტურის დღეს." },
+                            { q: "რა შედის ტურის ღირებულებაში?", a: "ტურის ფასში სრულად შედის კომფორტული VIP მგზავრობა, პრემიუმ გიდის მომსახურება, პროფესიონალური ფოტო-ვიდეო გადაღება და საუკეთესო საოჯახო სასტუმროები." },
+                            { q: "შესაძლებელია თუ არა ინდივიდუალური ან კორპორატიული VIP ტურის აწყობა?", a: "დიახ! ჩვენ ვამზადებთ ექსკლუზიურ ბესპოკ (Bespoke) ტურებს ზუსტად თქვენი გუნდის სურვილებისა და ბიუჯეტის მიხედვით." },
+                            { q: "რა ხდება უამინდობის შემთხვევაში?", a: "უსაფრთხოება ჩვენი უპირველესი პრიორიტეტია. ამინდის მკვეთრი გაუარესებისას მარშრუტი იცვლება უსაფრთხო ალტერნატივით ან ხდება თარიღის გადატანა." }
                         ],
                         contactSub: "დაგვიკავშირდით",
                         contactTitle: "დაჯავშნე შენი შემდეგი თავგადასავალი",
-                        contactDesc: "შეავსე მარტივი ფორმა და ჩვენი მენეჯერი 15 წუთში დაგიკავშირდება დეტალების შესათანხმებლად.",
+                        contactDesc: "შეავსე მარტივი ფორმა და ჩვენი პერსონალური მენეჯერი 15 წუთში დაგიკავშირდება დეტალების შესათანხმებლად.",
                         labelName: "სახელი და გვარი",
                         labelPhone: "ტელეფონის ნომერი",
                         labelTour: "აირჩიე მიმართულება",
                         labelPeople: "მონაწილეთა რაოდენობა",
-                        submitBtn: "მომითხოვე ზარი / ჯავშნის დადასტურება",
+                        submitBtn: "მომითხოვე ზარი / VIP ჯავშნის დადასტურება",
                         secureNotice: "🔒 თქვენი მონაცემები მკაცრად დაცულია. პირველი კონსულტაცია სრულიად უფასოა.",
                         successMsg: "🎉 მადლობა! თქვენი მოთხოვნა წარმატებით გაიგზავნა. ჩვენი მენეჯერი მალე დაგიკავშირდებათ.",
-                        footerDesc: "ფენომენალური ტურები — შენი სანდო პარტნიორი კავკასიონის ემოციურ სამყაროში.",
+                        footerDesc: "ფენომენალური ტურები — შენი სანდო პარტნიორი კავკასიონის ემოციურ და ლუქს სამყაროში.",
                         footerLinks: "სწრაფი ბმულები",
                         footerContact: "კონტაქტი",
                         footerSocial: "სოციალური ქსელები"
                     },
                     en: {
-                        announcement: "🚀 New Season 2027: Book your emotional adventure with a 15% early bird discount!",
-                        logoSub: "Phenomenal Tours",
+                        announcement: "✨ VIP Season 2027: Book your luxury Caucasian expedition with a 15% privilege!",
+                        logoSub: "Luxury Tours Georgia",
                         navTours: "Tours",
                         navInbound: "Inbound / Global",
                         navFaq: "FAQ",
                         navAbout: "About Us",
-                        ctaBook: "Book Now",
-                        heroBadge: "Feel the True Essence of Life",
-                        heroTitle: "People buy <span class='text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-emerald-300'>unforgettable emotions</span>",
-                        heroSubtitle: "Escape the routine. Dive into the magic of the Caucasus, feel absolute freedom, and create memories that last a lifetime.",
+                        ctaBook: "VIP Booking",
+                        heroBadge: "Luxury Adventure Ecosystem",
+                        heroTitle: "People buy <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>unforgettable emotions</span>",
+                        heroSubtitle: "Escape the routine. Dive into the majesty of the Caucasus, feel absolute freedom, and create memories that last a lifetime.",
                         heroBtnExplore: "Explore Tours",
-                        heroBtnCustom: "Custom Request",
+                        heroBtnCustom: "Custom VIP Request",
                         stat1: "Happy Travelers",
                         stat2: "Unique Routes",
                         stat3: "Google & FB Rating",
                         stat4: "Safety Guarantee",
-                        toursSub: "Featured Offers",
+                        toursSub: "Premium Collection",
                         toursTitle: "Choose Your Next Emotion",
                         filterAll: "All",
                         cardBtn: "Details & Booking",
-                        inboundSub: "Global Inbound Agency",
-                        inboundTitle: "World-Class Service for International Guests",
-                        inboundDesc: "Serving travelers from around the globe. Complete logistics, multilingual guides, and absolute comfort at every step.",
-                        inboundLi1: "24/7 Personal Concierge & Support",
+                        inboundSub: "Global Inbound Luxury Agency",
+                        inboundTitle: "World-Class VIP Service for International Guests",
+                        inboundDesc: "Serving travelers worldwide. Premium logistics, multilingual exclusive guides, and absolute comfort at every step.",
+                        inboundLi1: "24/7 Personal Concierge & VIP Support",
                         inboundLi2: "Secure Multi-currency Payments (Stripe, PayPal)",
-                        inboundLi3: "Comfortable 4x4 SUVs & Sprinter Vans",
+                        inboundLi3: "Comfortable Luxury 4x4 SUVs & VIP Sprinters",
                         inboundBtn: "Request Custom Tour",
                         faqSub: "Frequently Asked Questions",
-                        faqTitle: "Everything for Your Peace of Mind",
+                        faqTitle: "Everything for Your Complete Peace of Mind",
                         faqs: [
-                            { q: "How do I book a tour and make a payment?", a: "You can fill out the form on our website or contact us directly. A small deposit secures your spot, and the rest is paid on the day of the tour." },
-                            { q: "What is included in the tour price?", a: "The price includes comfortable transportation, a professional guide, photo/video coverage, and overnight stays in guesthouses where applicable." },
-                            { q: "Can you organize custom or corporate tours?", a: "Yes! We specialize in bespoke private and corporate expeditions tailored precisely to your team's desires and schedule." },
-                            { q: "What happens in case of bad weather?", a: "Safety is our top priority. In case of severe weather, we adjust the route to a safe alternative or reschedule for your maximum comfort." }
+                            { q: "How do I book a tour and make a payment?", a: "Fill out the form or contact us directly. A small deposit secures your spot, and the rest is paid on the tour day." },
+                            { q: "What is included in the tour price?", a: "Comfortable VIP transport, professional guide service, professional photo/video coverage, and hand-picked boutique guesthouses." },
+                            { q: "Can you organize custom or corporate VIP tours?", a: "Yes! We specialize in bespoke private expeditions tailored precisely to your preferences." },
+                            { q: "What happens in case of bad weather?", a: "Safety is our top priority. We adjust the route to a safe alternative or reschedule for your comfort." }
                         ],
                         contactSub: "Get in Touch",
                         contactTitle: "Book Your Next Adventure",
-                        contactDesc: "Fill out the simple form below and our manager will contact you within 15 minutes.",
+                        contactDesc: "Fill out the simple form and our personal manager will contact you within 15 minutes.",
                         labelName: "Full Name",
                         labelPhone: "Phone Number",
                         labelTour: "Select Destination",
                         labelPeople: "Number of People",
-                        submitBtn: "Request Call / Confirm Booking",
+                        submitBtn: "Request Call / Confirm VIP Booking",
                         secureNotice: "🔒 Your data is strictly protected. First consultation is 100% free.",
                         successMsg: "🎉 Thank you! Your request has been successfully sent. Our manager will contact you soon.",
-                        footerDesc: "Phenomenal Tours — Your trusted partner in emotional Caucasian expeditions.",
+                        footerDesc: "Phenomenal Tours — Your trusted partner in emotional Caucasian luxury expeditions.",
                         footerLinks: "Quick Links",
                         footerContact: "Contact",
                         footerSocial: "Social Networks"
                     },
                     ru: {
-                        announcement: "🚀 Новый сезон 2027: Забронируй незабываемое приключение со скидкой 15%!",
-                        logoSub: "Phenomenal Tours",
+                        announcement: "✨ VIP Сезон 2027: Забронируйте премиальную экспедицию со скидкой 15%!",
+                        logoSub: "Luxury Tours Georgia",
                         navTours: "Туры",
                         navInbound: "Инбаунд / Иностранцам",
                         navFaq: "FAQ",
                         navAbout: "О нас",
-                        ctaBook: "Забронировать",
-                        heroBadge: "Почувствуй вкус настоящей жизни",
-                        heroTitle: "Люди покупают <span class='text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-emerald-300'>незабываемые эмоции</span>",
-                        heroSubtitle: "Сбеги от рутины. Погрузись в магия Кавказа, ощути абсолютную свободу и создай воспоминания на всю жизнь.",
+                        ctaBook: "VIP Бронь",
+                        heroBadge: "Премиальная экосистема путешествий",
+                        heroTitle: "Люди покупают <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>незабываемые эмоции</span>",
+                        heroSubtitle: "Сбеги от рутины. Погрузись в величие Кавказа, ощути абсолютную свободу и создай воспоминания на всю жизнь.",
                         heroBtnExplore: "Смотреть туры",
-                        heroBtnCustom: "Индивидуальный тур",
+                        heroBtnCustom: "Индивидуальный VIP тур",
                         stat1: "Довольных путешественников",
                         stat2: "Уникальных маршрутов",
                         stat3: "Рейтинг Google & FB",
                         stat4: "Гарантия безопасности",
-                        toursSub: "Лучшие предложения",
+                        toursSub: "Премиальная коллекция",
                         toursTitle: "Выбери свою следующую эмоцию",
                         filterAll: "Все",
                         cardBtn: "Детали и бронь",
-                        inboundSub: "Global Inbound Agency",
-                        inboundTitle: "Сервис мирового уровня для гостей из-за рубежа",
-                        inboundDesc: "Обслуживаем путешественников со всего мира. Полная логистика, мультиязычные гиды и абсолютный комфорт.",
-                        inboundLi1: "Персональный консьерж и поддержка 24/7",
+                        inboundSub: "Global Inbound Luxury Agency",
+                        inboundTitle: "VIP сервис мирового уровня для гостей из-за рубежа",
+                        inboundDesc: "Обслуживаем путешественников со всего мира. Премиальная логистика, мультиязычные гиды и абсолютный комфорт.",
+                        inboundLi1: "Персональный консьерж и VIP поддержка 24/7",
                         inboundLi2: "Безопасная оплата (Stripe, PayPal, карты)",
-                        inboundLi3: "Комфортный транспорт (4x4 SUVs & Sprinter)",
+                        inboundLi3: "Комфортный транспорт (Luxury 4x4 SUVs & VIP Sprinters)",
                         inboundBtn: "Запросить индивидуальный тур",
                         faqSub: "Часто задаваемые вопросы",
-                        faqTitle: "Всё для вашего спокойствия",
+                        faqTitle: "Всё для вашего полного спокойствия",
                         faqs: [
-                            { q: "Как забронировать тур и оплатить?", a: "Заполните форму на сайте или свяжитесь с нами. Небольшой депозит закрепляет место, остаток — в день тура." },
-                            { q: "Что входит в стоимость тура?", a: "Транспорт, услуги профессионального гида, фото/видео съемка и ночевки в гестхаусах (где предусмотрено)." },
-                            { q: "Можно ли заказать индивидуальный или корпоративный тур?", a: "Да! Мы создаем эксклюзивные и корпоративные туры строго под ваши пожелания и бюджет." },
-                            { q: "Что происходит в случае плохой погоды?", a: "Безопасность превыше всего. При ухудшении погоды мы меняем маршрут на безопасную альтернативу или переносим дату." }
+                            { q: "Как забронировать тур и оплатить?", a: "Заполните форму на сайте. Небольшой депозит закрепляет место, остаток — в день тура." },
+                            { q: "Что входит в стоимость тура?", a: "Транспорт VIP класса, услуги профессионального гида, фото/видео съемка и лучшие гестхаусы." },
+                            { q: "Можно ли заказать индивидуальный или корпоративный VIP тур?", a: "Да! Мы создаем эксклюзивные туры строго под ваши пожелания и статус." },
+                            { q: "Что происходит в случае плохой погоды?", a: "Безопасность превыше всего. При ухудшении погоды мы меняем маршрут на безопасную альтернативу." }
                         ],
                         contactSub: "Свяжитесь с нами",
                         contactTitle: "Забронируйте свое следующее приключение",
-                        contactDesc: "Заполните простую форму, и наш менеджер свяжется с вами в течение 15 минут.",
+                        contactDesc: "Заполните простую форму, и наш персональный менеджер свяжется с вами в течение 15 минут.",
                         labelName: "Имя и фамилия",
                         labelPhone: "Номер телефона",
                         labelTour: "Выберите направление",
                         labelPeople: "Количество участников",
-                        submitBtn: "Запросить звонок / подтвердить бронь",
+                        submitBtn: "Запросить звонок / подтвердить VIP бронь",
                         secureNotice: "🔒 Ваши данные защищены. Первая консультация абсолютно бесплатна.",
                         successMsg: "🎉 Спасибо! Ваша заявка успешно отправлена. Наш менеджер скоро свяжется с вами.",
-                        footerDesc: "Phenomenal Tours — Ваш надежный проводник в мире кавказских эмоций.",
+                        footerDesc: "Phenomenal Tours — Ваш надежный проводник в мире кавказских люкс-эмоций.",
                         footerLinks: "Быстрые ссылки",
                         footerContact: "Контакты",
                         footerSocial: "Социальные сети"
                     }
                 },
 
+                // Real Legendary Location Photos (Svaneti, Tusheti, Kazbegi)
                 tours: [
                     {
                         id: 1,
                         category: 'svaneti',
                         region: 'svaneti',
                         title: 'სვანეთის 4-დღიანი ემოციური ექსპედიცია',
-                        description: 'იგრძენი უძველესი კოშკების ძლევამოსილება და კავკასიონის სიდიადე. ეს არ არის უბრალოდ მგზავრობა — ეს არის დაბრუნება შენს ჭეშმარიტ, თავისუფალ „მე“-სთან.',
+                        description: 'იგრძენი უძველესი სვანური კოშკებისა და უშგულის სიდიადე. ეს არ არის უბრალოდ მგზავრობა — ეს არის დაბრუნება შენს ჭეშმარიტ, თავისუფალ „მე“-სთან.',
                         duration: '4 დღე / 3 ღამე',
                         spots: 'დარჩენია 4 ადგილი',
                         priceGEL: 450,
-                        badge: 'ბესტსელერი',
-                        image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80'
+                        badge: '⭐ ბესტსელერი',
+                        image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1000&q=85'
                     },
                     {
                         id: 2,
                         category: 'tusheti',
                         region: 'tusheti',
                         title: 'თუშეთი: თავისუფლება ღრუბლებს ზემოთ',
-                        description: 'გაიარე აბანოს უღელტეხილის მისტიკური გზა და აღმოჩნდი იქ, სადაც დრო ჩერდება. დართლო და შენაქო მოგცემს იმ შინაგან სიმშვიდეს, რასაც ეძებდი.',
+                        description: 'გაიარე აბანოს უღელტეხილის მისტიკური გზა და აღმოჩნდი დართლოში, სადაც დრო ჩერდება და ბუნება სუფთა ენერგიით გავსებს.',
                         duration: '3 დღე / 2 ღამე',
                         spots: 'დარჩენია 3 ადგილი',
                         priceGEL: 390,
-                        badge: 'ექსკლუზივი',
-                        image: 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=800&q=80'
+                        badge: '💎 ექსკლუზივი',
+                        image: 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1000&q=85'
                     },
                     {
                         id: 3,
                         category: 'kazbegi',
                         region: 'kazbegi',
                         title: 'ყაზბეგი და ჯუთა: სულიერი განტვირთვა',
-                        description: '1-დღიანი სრული გადატვირთვა. შეხედე სამებას მწვერვალებიდან და ისუნთქე სრული მკერდით ჭაუხების ძირში.',
+                        description: '1-დღიანი პრემიუმ გადატვირთვა. შეხედე გერგეთის სამებას მწვერვალებიდან და ისუნთქე სრული მკერდით ჭაუხების ძირში.',
                         duration: '1 დღე',
                         spots: 'ყოველ შაბათ-კვირას',
                         priceGEL: 65,
-                        badge: 'პოპულარული',
-                        image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80'
+                        badge: '🔥 პოპულარული',
+                        image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=85'
                     }
                 ],
 
