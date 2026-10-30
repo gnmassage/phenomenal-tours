@@ -90,9 +90,8 @@
         </div>
     </header>
 
-    <!-- HERO SECTION: SVANETI TOWERS PREMIUM BACKGROUND -->
+    <!-- HERO SECTION: SVANETI TOWERS PREMIUM BACKGROUND WITH HOOK TITLE -->
     <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden px-4">
-        <!-- Real Svaneti Towers Background -->
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=2200&q=85" alt="Svaneti Towers Georgia" class="w-full h-full object-cover object-center filter brightness-[0.32] contrast-[1.1] scale-105">
             <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/60 to-transparent"></div>
@@ -103,6 +102,7 @@
                 <i data-lucide="crown" class="w-3.5 h-3.5"></i> <span x-text="t[lang].heroBadge"></span>
             </div>
             
+            <!-- THE HOOK TITLE -->
             <h1 class="text-3xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.12] mb-6" x-html="t[lang].heroTitle"></h1>
 
             <p class="text-base sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 leading-relaxed font-light" x-text="t[lang].heroSubtitle"></p>
@@ -138,7 +138,7 @@
         </div>
     </section>
 
-    <!-- TOURS CATALOG SECTION (Neuro-Copy + Real Legendary Photos) -->
+    <!-- TOURS CATALOG SECTION -->
     <section id="tours" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
             <div>
@@ -319,7 +319,7 @@
         </div>
     </footer>
 
-    <!-- ALPINE.JS LOGIC & NEURO-MARKETING TEXTS -->
+    <!-- ALPINE.JS LOGIC & TRANSLATIONS -->
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('phenomenalApp', () => ({
@@ -340,8 +340,8 @@
                         navAbout: "ჩვენ შესახებ",
                         ctaBook: "VIP ჯავშანი",
                         heroBadge: "ლუქს კლასის სათავგადასავლო პლატფორმა",
-                        heroTitle: "ადამიანები ყიდულობენ <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>დაუვიწყარ ემოციებს</span>",
-                        heroSubtitle: "გაექეცი ყოველდღიურ რუტინას. ჩაიძირე კავკასიონის დიდებულებაში, იგრძენი აბსოლუტური თავისუფლება და შექმენი მოგონებები, რომლებიც მთელი ცხოვრება გაგყვება.",
+                        heroTitle: "შენს ცხოვრებაში ყველაზე ძლიერი <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>ემოცია აქ იწყება</span>",
+                        heroSubtitle: "გაექეცი რუტინას. შეიგრძენი თავისუფლება ღრუბლებს ზემოთ, ჩაიძირე კავკასიონის დიდებულებაში და შექმენი მოგონებები, რომლებიც მთელი ცხოვრება შენი სიამაყე იქნება.",
                         heroBtnExplore: "აღმოაჩინე ტურები",
                         heroBtnCustom: "ინდივიდუალური VIP მოთხოვნა",
                         stat1: "კმაყოფილი მოგზაური",
@@ -391,8 +391,8 @@
                         navAbout: "About Us",
                         ctaBook: "VIP Booking",
                         heroBadge: "Luxury Adventure Ecosystem",
-                        heroTitle: "People buy <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>unforgettable emotions</span>",
-                        heroSubtitle: "Escape the routine. Dive into the majesty of the Caucasus, feel absolute freedom, and create memories that last a lifetime.",
+                        heroTitle: "The most powerful emotion <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>of your life starts here</span>",
+                        heroSubtitle: "Escape the routine. Feel absolute freedom above the clouds, dive into the majesty of the Caucasus, and create memories to be proud of.",
                         heroBtnExplore: "Explore Tours",
                         heroBtnCustom: "Custom VIP Request",
                         stat1: "Happy Travelers",
@@ -442,8 +442,8 @@
                         navAbout: "О нас",
                         ctaBook: "VIP Бронь",
                         heroBadge: "Премиальная экосистема путешествий",
-                        heroTitle: "Люди покупают <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>незабываемые эмоции</span>",
-                        heroSubtitle: "Сбеги от рутины. Погрузись в величие Кавказа, ощути абсолютную свободу и создай воспоминания на всю жизнь.",
+                        heroTitle: "Самая сильная эмоция <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>вашей жизни начинается здесь</span>",
+                        heroSubtitle: "Сбеги от рутины. Ощути свободу выше облаков, погрузись в величие Кавказа и создай воспоминания, которыми будешь гордиться всю жизнь.",
                         heroBtnExplore: "Смотреть туры",
                         heroBtnCustom: "Индивидуальный VIP тур",
                         stat1: "Довольных путешественников",
@@ -486,7 +486,6 @@
                     }
                 },
 
-                // Tours with Neuro-Descriptions & Real Photos
                 tours: [
                     {
                         id: 1,
