@@ -30,6 +30,23 @@
 </head>
 <body class="bg-[#07090e] text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white" x-data="phenomenalApp()">
 
+    <!-- 🌟 1-წამიანი შესავალი (INTRO SPLASH SCREEN) -->
+    <div x-show="showSplash" x-transition:leave="transition ease-in-out duration-700" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-105" class="fixed inset-0 z-50 bg-[#05070b] flex flex-col items-center justify-center p-4">
+        <div class="text-center space-y-6">
+            <!-- ლოგო ინტროში -->
+            <div class="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-br from-brand-500 to-emerald-800 flex items-center justify-center shadow-2xl shadow-brand-500/30 border border-brand-400/40 animate-pulse">
+                <i data-lucide="mountain-snow" class="w-10 h-10 text-white"></i>
+            </div>
+            <div>
+                <h1 class="text-2xl sm:text-3xl font-extrabold tracking-widest text-white uppercase">PHENOMENAL</h1>
+                <p class="text-xs text-amber-400 font-semibold tracking-widest uppercase mt-1">Luxury Tours Georgia</p>
+            </div>
+            <div class="w-32 h-1 bg-slate-800 rounded-full mx-auto overflow-hidden">
+                <div class="w-full h-full bg-gradient-to-r from-brand-500 to-amber-400 animate-[pulse_1s_infinite]"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- TOP ANNOUNCEMENT BAR -->
     <div class="bg-gradient-to-r from-emerald-900 via-emerald-800 to-emerald-900 text-amber-300 text-xs sm:text-sm py-2.5 px-4 text-center font-medium tracking-wide flex justify-center items-center gap-2 border-b border-emerald-700/50">
         <span x-text="t[lang].announcement"></span>
@@ -37,14 +54,11 @@
     </div>
 
     <!-- HEADER / NAVIGATION -->
-    <header class="sticky top-0 z-50 bg-[#07090e]/90 backdrop-blur-xl border-b border-slate-800/80">
+    <header class="sticky top-0 z-40 bg-[#07090e]/90 backdrop-blur-xl border-b border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- LOGO SECTION -->
+            <!-- LOGO -->
             <a href="#" class="flex items-center gap-3 group">
-                <!-- ლოგოს სურათი: აქ ჩასვი შენი ლოგოს ფაილის სახელი, მაგალითად logo.png -->
                 <img src="logo.png" alt="Phenomenal Tours Logo" class="w-11 h-11 rounded-2xl object-cover shadow-lg border border-brand-400/30 group-hover:scale-105 transition" onerror="this.style.display='none'">
-                
-                <!-- სარეზერვო ტექსტური ლოგო თუ სურათი არ ჩაიტრთა -->
                 <div>
                     <span class="text-lg sm:text-xl font-extrabold tracking-tight text-white block">PHENOMENAL</span>
                     <span class="text-[10px] text-amber-400 font-semibold tracking-widest uppercase block -mt-1" x-text="t[lang].logoSub"></span>
@@ -91,14 +105,19 @@
         </div>
     </header>
 
-    <!-- HERO SECTION WITH VIDEO BACKGROUND -->
+    <!-- HERO SECTION WITH SMART VIDEO BACKGROUND + FALLBACK IMAGE -->
     <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden px-4">
-        <!-- 🎬 ვიდეო ფონი და მუქი ფენა ტექსტის განსათლებლად -->
+        <!-- 🛡️ სმარტ ფოლბექი: სვანეთის ფოტო იატაკად (თუ ვიდეო არ ჩაირთო, ბაზა ყოველთვის ლამაზია) -->
+        <div class="absolute inset-0 z-0 bg-[#07090e]">
+            <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=2200&q=85" alt="Svaneti Background Fallback" class="w-full h-full object-cover object-center filter brightness-[0.3]">
+        </div>
+
+        <!-- 🎬 რეალური ვიდეო ფონი (თუ ჩაიძირა ფოლბექის თავზე) -->
         <div class="absolute inset-0 z-0">
-            <video autoplay muted loop playsinline class="w-full h-full object-cover filter brightness-[0.4] contrast-[1.05]">
-                <!-- ქვემოთ მიუთითე შენი ვიდეოს ფაილის სახელი ან ლინკი -->
+            <video autoplay muted loop playsinline class="w-full h-full object-cover object-center filter brightness-[0.4] contrast-[1.05]">
                 <source src="hero-video.mp4" type="video/mp4">
             </video>
+            <!-- მუქი გრადიენტი ტექსტის იდეალური კონტრასტისთვის -->
             <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/50 to-transparent"></div>
         </div>
 
@@ -372,10 +391,11 @@
         </div>
     </footer>
 
-    <!-- ALPINE.JS LOGIC & TRANSLATIONS -->
+    <!-- ALPINE.JS LOGIC & SPLASH TIMER -->
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('phenomenalApp', () => ({
+                showSplash: true,
                 mobileMenu: false,
                 lang: 'ka',
                 currency: 'GEL',
@@ -383,6 +403,13 @@
                 submitted: false,
                 form: { name: '', phone: '', tour: 'Svaneti Trekking', people: 2 },
                 
+                init() {
+                    // ინტრო ეკრანი გაქრება ზუსტად 1 წამში (1000 მილიწამი)
+                    setTimeout(() => {
+                        this.showSplash = false;
+                    }, 1000);
+                },
+
                 t: {
                     ka: {
                         announcement: "✨ VIP სეზონი 2027: დაჯავშნე პრემიუმ კლასის ტური 15%-იანი პრივილეგიით!",
