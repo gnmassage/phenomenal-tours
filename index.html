@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ka" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ფენომენალური ტურები | Phenomenal Tours - Georgia & Caucasus Expeditions</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js for Interactivity -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Google Fonts: Inter & Fira Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Fira Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                            dark: '#0f172a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white" x-data="tourApp()">
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-brand-700 text-white text-xs md:text-sm py-2 px-4 text-center font-medium tracking-wide flex justify-center items-center gap-2">
+        <span>🚀 ახალი სეზონი 2027: დაჯავშნე თუშეთი ან სვანეთი 15%-იანი ფასდაკლებით!</span>
+        <span class="hidden md:inline bg-white/20 px-2 py-0.5 rounded text-xs uppercase">Limited Time</span>
+    </div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-emerald-700 flex items-center justify-center shadow-lg shadow-brand-500/20 group-hover:scale-105 transition">
+                    <i data-lucide="mountain-snow" class="w-6 h-6 text-white"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight text-white block">PHENOMENAL</span>
+                    <span class="text-xs text-brand-400 font-medium tracking-widest uppercase block -mt-1">ფენომენალური ტურები</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+                <a href="#tours" class="hover:text-brand-400 transition">ტურები</a>
+                <a href="#inbound" class="hover:text-brand-400 transition">Inbound / უცხოელებისთვის</a>
+                <a href="#corporate" class="hover:text-brand-400 transition">კორპორატიული</a>
+                <a href="#about" class="hover:text-brand-400 transition">ჩვენ შესახებ</a>
+            </nav>
+
+            <!-- Actions & Currency -->
+            <div class="flex items-center gap-4">
+                <!-- Currency Selector -->
+                <select x-model="currency" @change="updateCurrency()" class="bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-lg px-2.5 py-1.5 focus:outline-none focus:border-brand-500 cursor-pointer">
+                    <option value="GEL">₾ GEL</option>
+                    <option value="USD">$ USD</option>
+                    <option value="EUR">€ EUR</option>
+                </select>
+
+                <a href="#contact" class="hidden sm:inline-flex items-center justify-center bg-brand-600 hover:bg-brand-500 text-white font-medium text-sm px-5 py-2.5 rounded-xl shadow-lg shadow-brand-600/20 transition transform hover:-translate-y-0.5">
+                    დაჯავშნა
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button @click="mobileMenu = !mobileMenu" class="md:hidden p-2 text-slate-400 hover:text-white">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Drawer -->
+        <div x-show="mobileMenu" x-transition class="md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#tours" @click="mobileMenu = false" class="block py-2 text-slate-300 hover:text-white">ტურები</a>
+            <a href="#inbound" @click="mobileMenu = false" class="block py-2 text-slate-300 hover:text-white">Inbound / უცხოელებისთვის</a>
+            <a href="#corporate" @click="mobileMenu = false" class="block py-2 text-slate-300 hover:text-white">კორპორატიული</a>
+            <a href="#about" @click="mobileMenu = false" class="block py-2 text-slate-300 hover:text-white">ჩვენ შესახებ</a>
+            <a href="#contact" @click="mobileMenu = false" class="inline-block w-full text-center bg-brand-600 text-white font-medium py-2.5 rounded-xl mt-2">დაჯავშნა</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION (Svaneti Towers & Neuro-Hook) -->
+    <section class="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+        <!-- Background Image with Overlay (Svaneti Towers Atmosphere) -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=2000&q=80" alt="Svaneti Georgia Mountains" class="w-full h-full object-cover object-center filter brightness-[0.4] scale-105 animate-pulse duration-[10000ms]">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center py-20">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-400 text-xs font-semibold tracking-wider uppercase mb-6 backdrop-blur-md">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> #1 სათავგადასავლო პლატფორმა საქართველოში
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-6">
+                აღმოაჩინე საქართველო <br class="hidden sm:inline"><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-emerald-300">ფენომენალურად</span>
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-10 font-normal">
+                დაუვიწყარი 1-დღიანი და მრავალდღიანი ექსპედიციები კავკასიონის მთებში, სვანეთში, თუშეთსა და საქართველოს ულამაზეს კუთხეებში.
+            </p>
+
+            <!-- Quick Search Widget Bar -->
+            <div class="bg-slate-900/90 border border-slate-800 p-3 sm:p-4 rounded-2xl backdrop-blur-xl max-w-3xl mx-auto shadow-2xl flex flex-col sm:flex-row gap-3">
+                <div class="flex-1 text-left px-3 py-2 bg-slate-950/60 rounded-xl border border-slate-800">
+                    <label class="block text-xs text-slate-400 font-medium uppercase">მიმართულება</label>
+                    <select x-model="selectedRegion" class="w-full bg-transparent text-white text-sm font-medium focus:outline-none mt-0.5 cursor-pointer">
+                        <option value="all" class="bg-slate-900">ყველა რეგიონი</option>
+                        <option value="svaneti" class="bg-slate-900">სვანეთი</option>
+                        <option value="tusheti" class="bg-slate-900">თუშეთი</option>
+                        <option value="kazbegi" class="bg-slate-900">ყაზბეგი / ჯუთა</option>
+                        <option value="racha" class="bg-slate-900">რაჭა</option>
+                    </select>
+                </div>
+                <div class="flex-1 text-left px-3 py-2 bg-slate-950/60 rounded-xl border border-slate-800">
+                    <label class="block text-xs text-slate-400 font-medium uppercase">ტურის ტიპი</label>
+                    <select x-model="selectedType" class="w-full bg-transparent text-white text-sm font-medium focus:outline-none mt-0.5 cursor-pointer">
+                        <option value="all" class="bg-slate-900">ყველა ტიპი</option>
+                        <option value="1day" class="bg-slate-900">1 დღიანი ლაშქრობა</option>
+                        <option value="multiday" class="bg-slate-900">მრავალდღიანი ექსპედიცია</option>
+                        <option value="private" class="bg-slate-900">ინდივიდუალური / VIP</option>
+                    </select>
+                </div>
+                <button @click="scrollToTours()" class="bg-brand-600 hover:bg-brand-500 text-white font-semibold px-8 py-4 rounded-xl transition flex items-center justify-center gap-2 shadow-lg shadow-brand-600/30">
+                    <i data-lucide="search" class="w-5 h-5"></i> ძებნა
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST METRICS BAR -->
+    <section class="border-y border-slate-800 bg-slate-900/40 py-8">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div>
+                <div class="text-3xl font-extrabold text-brand-400 mb-1">15,000+</div>
+                <div class="text-xs sm:text-sm text-slate-400">კმაყოფილი მოგზაური</div>
+            </div>
+            <div>
+                <div class="text-3xl font-extrabold text-brand-400 mb-1">120+</div>
+                <div class="text-xs sm:text-sm text-slate-400">უნიკალური მარშრუტი</div>
+            </div>
+            <div>
+                <div class="text-3xl font-extrabold text-brand-400 mb-1">4.9 / 5.0</div>
+                <div class="text-xs sm:text-sm text-slate-400">Google & Facebook რეიტინგი</div>
+            </div>
+            <div>
+                <div class="text-3xl font-extrabold text-brand-400 mb-1">100%</div>
+                <div class="text-xs sm:text-sm text-slate-400">უსაფრთხოების გარანტია</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOURS CATALOG SECTION -->
+    <section id="tours" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+            <div>
+                <span class="text-brand-400 text-sm font-semibold tracking-wider uppercase">გამორჩეული შეთავაზებები</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mt-2">პოპულარული ტურები 2027 სეზონისთვის</h2>
+            </div>
+            <div class="mt-4 md:mt-0 flex gap-2 overflow-x-auto pb-2">
+                <button @click="filterCategory = 'all'" :class="filterCategory === 'all' ? 'bg-brand-600 text-white' : 'bg-slate-900 text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-semibold transition border border-slate-800">ყველა</button>
+                <button @click="filterCategory = 'svaneti'" :class="filterCategory === 'svaneti' ? 'bg-brand-600 text-white' : 'bg-slate-900 text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-semibold transition border border-slate-800">სვანეთი</button>
+                <button @click="filterCategory = 'tusheti'" :class="filterCategory === 'tusheti' ? 'bg-brand-600 text-white' : 'bg-slate-900 text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-semibold transition border border-slate-800">თუშეთი</button>
+                <button @click="filterCategory = 'kazbegi'" :class="filterCategory === 'kazbegi' ? 'bg-brand-600 text-white' : 'bg-slate-900 text-slate-400 hover:text-white'" class="px-4 py-2 rounded-xl text-xs font-semibold transition border border-slate-800">ყაზბეგი</button>
+            </div>
+        </div>
+
+        <!-- Tours Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Tour Card 1 -->
+            <template x-for="tour in filteredTours" :key="tour.id">
+                <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden group hover:border-brand-500/50 transition duration-300 flex flex-col justify-between shadow-xl">
+                    <div>
+                        <div class="relative h-60 overflow-hidden">
+                            <img :src="tour.image" :alt="tour.title" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute top-4 left-4 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-lg text-xs font-semibold text-brand-400 border border-slate-800" x-text="tour.badge"></div>
+                            <div class="absolute bottom-4 right-4 bg-brand-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-md" x-text="formatPrice(tour.price)"></div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-4 text-xs text-slate-400 mb-3">
+                                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5 text-brand-400"></i> <span x-text="tour.duration"></span></span>
+                                <span class="flex items-center gap-1"><i data-lucide="users" class="w-3.5 h-3.5 text-brand-400"></i> <span x-text="tour.spots"></span></span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-brand-400 transition" x-text="tour.title"></h3>
+                            <p class="text-slate-400 text-sm line-clamp-2 mb-4" x-text="tour.description"></p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-0">
+                        <button @click="openBookingModal(tour)" class="w-full bg-slate-800 hover:bg-brand-600 text-slate-200 hover:text-white font-medium py-2.5 rounded-xl transition text-sm flex items-center justify-center gap-2 border border-slate-700 hover:border-transparent">
+                            <span>დაჯავშნა</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </section>
+
+    <!-- INBOUND & INTERNATIONAL HUB -->
+    <section id="inbound" class="bg-slate-900/60 border-y border-slate-800 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <span class="text-brand-400 text-sm font-semibold tracking-wider uppercase">Global Inbound Agency</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white tracking-tight mt-2 mb-6">შემომყვანი ტურიზმი და VIP სერვისები საერთაშორისო სტუმრებისთვის</h2>
+                <p class="text-slate-300 mb-6 leading-relaxed">
+                    ვემსახურებით უცხოელ მოგზაურებს, ტურისტულ ჯგუფებს და კორპორატიულ პარტნიორებს მთელი მსოფლიოდან. გთავაზობთ სრულ ლოჯისტიკას, აეროპორტის ტრანსფერს, სერტიფიცირებულ გიდებს (ინგლისური, რუსული, გერმანული) და VIP მარშრუტებს.
+                </p>
+                <ul class="space-y-3 mb-8 text-slate-300 text-sm">
+                    <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-400"></i> 24/7 პერსონალური კონსიერჟი და მხარდაჭერა</li>
+                    <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-400"></i> მრავალვალუტიანი უსაფრთხო გადახდები (Stripe, PayPal)</li>
+                    <li class="flex items-center gap-3"><i data-lucide="check-circle-2" class="w-5 h-5 text-brand-400"></i> კომფორტული სპეც-ტრანსპორტი (4x4 SUVs & Sprinter Minivans)</li>
+                </ul>
+                <a href="#contact" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-500 text-white font-medium px-6 py-3 rounded-xl transition shadow-lg shadow-brand-600/20">
+                    მოითხოვე ინდივიდუალური ტური <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+            <div class="relative">
+                <div class="rounded-3xl overflow-hidden border border-slate-800 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=1000&q=80" alt="Caucasus Hiking Inbound" class="w-full h-[400px] object-cover">
+                </div>
+                <div class="absolute -bottom-6 -left-6 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-2xl max-w-xs hidden sm:block">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></div>
+                        <span class="text-xs font-bold text-white uppercase tracking-wider">Live Support</span>
+                    </div>
+                    <p class="text-xs text-slate-400">ოპერატორები მზად არიან უპასუხონ ნებისმიერ შეკითხვას ენობრივი ბარიერის გარეშე.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT / BOOKING MODAL & FORM -->
+    <section id="contact" class="py-20 max-w-4xl mx-auto px-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-brand-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <span class="text-brand-400 text-sm font-semibold tracking-wider uppercase">დაგვიკავშირდით</span>
+                <h2 class="text-3xl font-bold text-white mt-2 mb-3">დაჯავშნე შენი შემდეგი თავგადასავალი</h2>
+                <p class="text-slate-400 text-sm">შეავსე მარტივი ფორმა და ჩვენი მენეჯერი 15 წუთში დაგიკავშირდება დეტალების შესათანხმებლად.</p>
+            </div>
+
+            <form @submit.prevent="submitForm" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 uppercase mb-1">სახელი და გვარი</label>
+                        <input type="text" x-model="form.name" required placeholder="მაგ: გიორგი ნადირაძე" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 uppercase mb-1">ტელეფონის ნომერი</label>
+                        <input type="tel" x-model="form.phone" required placeholder="+995 558 XX XX XX" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 uppercase mb-1">აირჩიე მიმართულება</label>
+                        <select x-model="form.tour" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500 cursor-pointer">
+                            <option value="Svaneti Trekking">სვანეთის 4-დღიანი ექსპედიცია</option>
+                            <option value="Tusheti Adventure">თუშეთი (დართლო - შენაქო)</option>
+                            <option value="Kazbegi & Juta">ყაზბეგი და ჯუთა (1 დღე)</option>
+                            <option value="Custom Inbound Tour">ინდივიდუალური / კორპორატიული ტური</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-slate-400 uppercase mb-1">მონაწილეთა რაოდენობა</label>
+                        <input type="number" x-model="form.people" min="1" max="50" value="2" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-brand-500">
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" class="w-full bg-brand-600 hover:bg-brand-500 text-white font-semibold py-4 rounded-xl transition shadow-lg shadow-brand-600/30 text-center">
+                        მომითხოვე ზარი / ჯავშნის დადასტურება
+                    </button>
+                </div>
+                <p class="text-center text-xs text-slate-500 mt-2">🔒 თქვენი მონაცემები მკაცრად დაცულია. პირველი კონსულტაცია სრულიად უფასოა.</p>
+            </form>
+
+            <!-- Success Alert -->
+            <div x-show="submitted" x-transition class="mt-6 p-4 bg-emerald-950/80 border border-emerald-500/50 rounded-2xl text-center text-emerald-300 text-sm font-medium">
+                🎉 მადლობა! თქვენი მოთხოვნა წარმატებით გაიგზავნა. ჩვენი მენეჯერი მალე დაგიკავშირდებათ.
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800 bg-slate-950 py-12 text-slate-400 text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white">
+                        <i data-lucide="mountain-snow" class="w-5 h-5"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white">PHENOMENAL TOURS</span>
+                </div>
+                <p class="text-xs text-slate-400 leading-relaxed">
+                    ფენომენალური ტურები — თქვენი სანდო პარტნიორი საქართველოსა და კავკასიონის მასშტაბით უმაღლესი ხარისხის თავგადასავლებისთვის.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold text-xs uppercase tracking-wider mb-3">სწრაფი ბმულები</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#tours" class="hover:text-white transition">ყველა ტური</a></li>
+                    <li><a href="#inbound" class="hover:text-white transition">Inbound სერვისები</a></li>
+                    <li><a href="#corporate" class="hover:text-white transition">კორპორატიული პაკეტები</a></li>
+                    <li><a href="#contact" class="hover:text-white transition">კონტაქტი</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold text-xs uppercase tracking-wider mb-3">კონტაქტი</h4>
+                <ul class="space-y-2 text-xs">
+                    <li>📞 +995 558 65 60 85</li>
+                    <li>📞 +995 555 248 768</li>
+                    <li>✉️ phenomenaltravel@yahoo.com</li>
+                    <li>📍 თბილისი / რუსთავი, საქართველო</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold text-xs uppercase tracking-wider mb-3">სოციალური ქსელები</h4>
+                <div class="flex gap-3">
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-brand-400 hover:border-brand-500 transition"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-brand-400 hover:border-brand-500 transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                    <a href="#" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-brand-400 hover:border-brand-500 transition"><i data-lucide="message-circle" class="w-5 h-5"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-900 pt-6 text-center text-xs text-slate-600">
+            © 2027 Phenomenal Tours. ყველა უფლება დაცულია. აწყობილია Next-Gen Web Architecture-ით.
+        </div>
+    </footer>
+
+    <!-- ALPINE.JS APP LOGIC -->
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('tourApp', () => ({
+                mobileMenu: false,
+                currency: 'GEL',
+                selectedRegion: 'all',
+                selectedType: 'all',
+                filterCategory: 'all',
+                submitted: false,
+                form: {
+                    name: '',
+                    phone: '',
+                    tour: 'Svaneti Trekking',
+                    people: 2
+                },
+                tours: [
+                    {
+                        id: 1,
+                        category: 'svaneti',
+                        region: 'svaneti',
+                        type: 'multiday',
+                        title: 'სვანეთის 4-დღიანი ექსპედიცია',
+                        description: 'უნიკალური მოგზაურობა უშგულში, მესტიასა და ლატალში. სვანური კოშკები და კავკასიონის მწვერვალები.',
+                        duration: '4 დღე / 3 ღამე',
+                        spots: 'დარჩენია 4 ადგილი',
+                        priceGEL: 450,
+                        badge: 'ბესტსელერი',
+                        image: 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=800&q=80'
+                    },
+                    {
+                        id: 2,
+                        category: 'tusheti',
+                        region: 'tusheti',
+                        type: 'multiday',
+                        title: 'თუშეთის მისტიკური სამყარო',
+                        description: 'დართლო, შენაქო, აბანოს უღელტეხილი. დაუვიწყარი სათავგადასავლო ტური ჯიპებით.',
+                        duration: '3 დღე / 2 ღამე',
+                        spots: 'დარჩენია 3 ადგილი',
+                        priceGEL: 390,
+                        badge: 'ექსკლუზივი',
+                        image: 'https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=800&q=80'
+                    },
+                    {
+                        id: 3,
+                        category: 'kazbegi',
+                        region: 'kazbegi',
+                        type: '1day',
+                        title: 'ყაზბეგი და ჯუთას ველები',
+                        description: '1-დღიანი ტური გერგეთის სამებაში, ანანურსა და ჯუთას ჭაუხების მიმართულებით.',
+                        duration: '1 დღე',
+                        spots: 'ყოველ შაბათ-კვირას',
+                        priceGEL: 65,
+                        badge: 'პოპულარული',
+                        image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80'
+                    }
+                ],
+                get filteredTours() {
+                    return this.tours.filter(tour => {
+                        let matchesCategory = this.filterCategory === 'all' || tour.category === this.filterCategory;
+                        let matchesRegion = this.selectedRegion === 'all' || tour.region === this.selectedRegion;
+                        return matchesCategory && matchesRegion;
+                    });
+                },
+                formatPrice(gel) {
+                    if (this.currency === 'USD') return '$' + Math.round(gel / 2.7);
+                    if (this.currency === 'EUR') return '€' + Math.round(gel / 2.9);
+                    return gel + ' ₾';
+                },
+                updateCurrency() {
+                    // Currency conversion trigger
+                },
+                scrollToTours() {
+                    document.getElementById('tours').scrollIntoView({ behavior: 'smooth' });
+                },
+                openBookingModal(tour) {
+                    this.form.tour = tour.title;
+                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                },
+                submitForm() {
+                    this.submitted = true;
+                    setTimeout(() => {
+                        this.submitted = false;
+                        this.form.name = '';
+                        this.form.phone = '';
+                    }, 5000);
+                }
+            }));
+        });
+
+        // Initialize Lucide Icons
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
