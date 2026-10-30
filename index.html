@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ფენომენალური ტურები | Phenomenal Tours - Luxury Caucasus Expeditions</title>
     <!-- SEO Meta Tags -->
-    <meta name="description" content="ადამიანები ყიდულობენ დაუვიწყარ ემოციებს. აღმოაჩინე საქართველო პრემიუმ დონეზე: სვანეთი, თუშეთი, ყაზბეგი.">
+    <meta name="description" content="ადგილი სადაც დრო ჩერდება. გაიცანი ნამდვილი ტრადიციული საქართველო. მოწყდი რეალობას.">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Alpine.js -->
@@ -33,7 +33,6 @@
     <!-- 🌟 1-წამიანი შესავალი (INTRO SPLASH SCREEN) -->
     <div x-show="showSplash" x-transition:leave="transition ease-in-out duration-700" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-105" class="fixed inset-0 z-50 bg-[#05070b] flex flex-col items-center justify-center p-4">
         <div class="text-center space-y-6">
-            <!-- ლოგო ინტროში -->
             <div class="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-br from-brand-500 to-emerald-800 flex items-center justify-center shadow-2xl shadow-brand-500/30 border border-brand-400/40 animate-pulse">
                 <i data-lucide="mountain-snow" class="w-10 h-10 text-white"></i>
             </div>
@@ -56,7 +55,6 @@
     <!-- HEADER / NAVIGATION -->
     <header class="sticky top-0 z-40 bg-[#07090e]/90 backdrop-blur-xl border-b border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- LOGO -->
             <a href="#" class="flex items-center gap-3 group">
                 <img src="logo.png" alt="Phenomenal Tours Logo" class="w-11 h-11 rounded-2xl object-cover shadow-lg border border-brand-400/30 group-hover:scale-105 transition" onerror="this.style.display='none'">
                 <div>
@@ -65,7 +63,6 @@
                 </div>
             </a>
 
-            <!-- Desktop Nav -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
                 <a href="#tours" class="hover:text-brand-400 transition" x-text="t[lang].navTours"></a>
                 <a href="#instagram" class="hover:text-brand-400 transition" x-text="t[lang].navInsta"></a>
@@ -73,7 +70,6 @@
                 <a href="#faq" class="hover:text-brand-400 transition" x-text="t[lang].navFaq"></a>
             </nav>
 
-            <!-- Actions -->
             <div class="flex items-center gap-3">
                 <select x-model="lang" class="bg-slate-900 border border-slate-700 text-slate-200 text-xs rounded-xl px-2.5 py-2 focus:outline-none focus:border-brand-500 cursor-pointer font-semibold shadow-inner">
                     <option value="ka">🇬🇪 ქარ</option>
@@ -95,7 +91,6 @@
             </div>
         </div>
 
-        <!-- Mobile Nav Drawer -->
         <div x-show="mobileMenu" x-transition class="md:hidden bg-slate-900 border-b border-slate-800 px-4 pt-4 pb-6 space-y-3 shadow-2xl">
             <a href="#tours" @click="mobileMenu = false" class="block py-2 text-slate-300 hover:text-white font-medium" x-text="t[lang].navTours"></a>
             <a href="#instagram" @click="mobileMenu = false" class="block py-2 text-slate-300 hover:text-white font-medium" x-text="t[lang].navInsta"></a>
@@ -105,19 +100,16 @@
         </div>
     </header>
 
-    <!-- HERO SECTION WITH SMART VIDEO BACKGROUND + FALLBACK IMAGE -->
+    <!-- HERO SECTION WITH SMART VIDEO BACKGROUND + YOUR PHRASES -->
     <section class="relative min-h-[90vh] flex items-center justify-center overflow-hidden px-4">
-        <!-- 🛡️ სმარტ ფოლბექი: სვანეთის ფოტო იატაკად (თუ ვიდეო არ ჩაირთო, ბაზა ყოველთვის ლამაზია) -->
         <div class="absolute inset-0 z-0 bg-[#07090e]">
             <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=2200&q=85" alt="Svaneti Background Fallback" class="w-full h-full object-cover object-center filter brightness-[0.3]">
         </div>
 
-        <!-- 🎬 რეალური ვიდეო ფონი (თუ ჩაიძირა ფოლბექის თავზე) -->
         <div class="absolute inset-0 z-0">
             <video autoplay muted loop playsinline class="w-full h-full object-cover object-center filter brightness-[0.4] contrast-[1.05]">
                 <source src="hero-video.mp4" type="video/mp4">
             </video>
-            <!-- მუქი გრადიენტი ტექსტის იდეალური კონტრასტისთვის -->
             <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/50 to-transparent"></div>
         </div>
 
@@ -391,7 +383,7 @@
         </div>
     </footer>
 
-    <!-- ALPINE.JS LOGIC & SPLASH TIMER -->
+    <!-- ALPINE.JS LOGIC & YOUR EXACT PHRASES -->
     <script>
         document.addEventListener('alpine:init', () => {
             Alpine.data('phenomenalApp', () => ({
@@ -404,7 +396,6 @@
                 form: { name: '', phone: '', tour: 'Svaneti Trekking', people: 2 },
                 
                 init() {
-                    // ინტრო ეკრანი გაქრება ზუსტად 1 წამში (1000 მილიწამი)
                     setTimeout(() => {
                         this.showSplash = false;
                     }, 1000);
@@ -420,9 +411,9 @@
                         navFaq: "FAQ",
                         ctaBook: "VIP ჯავშანი",
                         heroBadge: "ლუქს კლასის სათავგადასავლო პლატფორმა",
-                        heroTitle: "შენს ცხოვრებაში ყველაზე ძლიერი <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>ემოცია აქ იწყება</span>",
-                        heroSubtitle: "გაექეცი რუტინას. შეიგრძენი თავისუფლება ღრუბლებს ზემოთ, ჩაიძირე კავკასიონის დიდებულებაში და შექმენი მოგონებები, რომლებიც მთელი ცხოვრება შენი სიამაყე იქნება.",
-                        heroBtnExplore: "აღმოაჩინე ტურები",
+                        heroTitle: "ადგილი სადაც <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>დრო ჩერდება</span>. გაიცანი ნამდვილი ტრადიციული საქართველო.",
+                        heroSubtitle: "მოწყდი რეალობას. ემოციები ეს არის საწვავი რუტინული სამუშაოსთვის — საუკეთესო მოგონებები იწყება მომენტალური გადაწყვეტილებებით.",
+                        heroBtnExplore: "ვწყვეტ ყველაფერს — მივდივარ!",
                         heroBtnCustom: "ინდივიდუალური VIP მოთხოვნა",
                         stat1: "კმაყოფილი მოგზაური",
                         stat2: "უნიკალური მარშრუტი",
@@ -474,9 +465,9 @@
                         navFaq: "FAQ",
                         ctaBook: "VIP Booking",
                         heroBadge: "Luxury Adventure Ecosystem",
-                        heroTitle: "The most powerful emotion <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>of your life starts here</span>",
-                        heroSubtitle: "Escape the routine. Feel absolute freedom above the clouds, dive into the majesty of the Caucasus, and create memories to be proud of.",
-                        heroBtnExplore: "Explore Tours",
+                        heroTitle: "The place where <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>time stands still</span>. Discover true traditional Georgia.",
+                        heroSubtitle: "Escape reality. Emotions are the fuel for your routine — and the best memories start with instant decisions.",
+                        heroBtnExplore: "I'm Deciding Now — Let's Go!",
                         heroBtnCustom: "Custom VIP Request",
                         stat1: "Happy Travelers",
                         stat2: "Unique Routes",
@@ -528,9 +519,9 @@
                         navFaq: "FAQ",
                         ctaBook: "VIP Бронь",
                         heroBadge: "Премиальная экосистема путешествий",
-                        heroTitle: "Самая сильная эмоция <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>вашей жизни начинается здесь</span>",
-                        heroSubtitle: "Сбеги от рутины. Ощути свободу выше облаков, погрузись в величие Кавказа и создай воспоминания, которыми будешь гордиться всю жизнь.",
-                        heroBtnExplore: "Смотреть туры",
+                        heroTitle: "Место, где <span class='text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-brand-400 to-emerald-300'>останавливается время</span>. Познай настоящую Грузию.",
+                        heroSubtitle: "Вырвись из реальности. Эмоции — это топливо для рутины, а лучшие воспоминания всегда начинаются со спонтанных решений.",
+                        heroBtnExplore: "Решаюсь прямо сейчас — Едем!",
                         heroBtnCustom: "Индивидуальный VIP тур",
                         stat1: "Довольных путешественников",
                         stat2: "Уникальных маршрутов",
